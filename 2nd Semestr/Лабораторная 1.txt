@@ -1,0 +1,110 @@
+#include <iostream>
+#include <string>
+#include <Windows.h>
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::string;
+
+//////////////////////////////////////////////////////////////////////
+
+// Печать элементов строки через пробел
+void print(string);
+// Печать элементов строки в виде множества
+void printBraces(string);
+
+
+// Сортировка по возрастанию всех элементов строки
+string sort(string);
+// Удаление повторяющихся элементов строки
+string clean(string);
+
+//////////////////////////////////////////////////////////////////////
+
+class Stroka
+{
+private:
+	string str;	// Изначальная строка
+	string a;	// Строка-алфавит
+public:
+	Stroka();
+
+	// Вводим строку
+	void set() { cin >> str; }
+	// Возвращаем строку-алфавит
+	string get() { return a; }
+};
+
+//////////////////////////////////////////////////////////////////////
+
+int main()
+{
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
+	Stroka A;
+	print(A.get());
+
+	return 0;
+}
+
+//////////////////////////////////////////////////////////////////////
+
+void print(string str)
+{
+	for (int i = 0; i < str.length(); ++i)
+	{
+		if (i < str.length() - 1) cout << str[i] << ' ';
+		else cout << str[i];
+	}
+	cout << endl;
+}
+void printBraces(string str)
+{
+	cout << "{";
+	for (int i = 0; i < str.length(); ++i)
+	{
+		if (i < str.length() - 1) cout << str[i] << ", ";
+		else cout << str[i] << "}" << endl;
+	}
+}
+string sort(string a)
+{
+	for (int i = 0; i < a.length(); ++i)
+	{
+		bool flag = false;
+		for (int j = 0; j < a.length() - 1; ++j)
+		{
+			if (a[j + 1] < a[j])
+			{
+				a[j + 1] += a[j];
+				a[j] = a[j + 1] - a[j];
+				a[j + 1] -= a[j];
+				flag = true;
+			}
+		}
+		if (!flag) break;
+	}
+	return a;
+}
+string clean(string a)
+{
+	string clean_a;
+	int i;
+	for (i = 0; i < a.length() - 1; ++i)
+	{
+		if (a[i] != a[i + 1]) clean_a.push_back(a[i]);
+	}
+	clean_a.push_back(a[i]);
+	return clean_a;
+}
+
+//////////////////////////////////////////////////////////////////////
+
+Stroka::Stroka()
+{
+	set();
+	a = sort(str);
+	a = clean(a);
+}

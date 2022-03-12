@@ -1,0 +1,74 @@
+#include <iostream>
+#include <vector>
+
+using std::cin;
+using std::cout;
+using std::endl;
+
+class Numeric
+{
+private:
+	int N;
+	std::vector<int> arr;
+	std::string str;
+
+public:
+	Numeric()
+	{
+		set();
+		sort();
+		make_max_num();
+		make_min_num();
+	}
+	void set();
+	void make_min_num();
+	void make_max_num();
+	void sort();
+};
+
+int main()
+{
+	Numeric A;
+	return 0;
+}
+
+void Numeric::set()
+{
+	cin >> N >> str;
+	arr.reserve(N);
+	for (int i = 0; i < N; ++i) arr.push_back(str[i] - 48);
+}
+
+void Numeric::make_max_num()
+{
+	for (int i = 0; i < N; ++i) cout << arr[N - i - 1];
+	cout << endl;
+}
+
+void Numeric::make_min_num()
+{
+	if (arr[0] == 0)
+	{
+		int j = 0;
+		while (arr[j] == 0) ++j;
+		arr[0] = arr[j];
+		arr[j] = 0;
+	}
+	for (int i = 0; i < N; ++i) cout << arr[i];
+}
+
+void Numeric::sort()
+{
+	for (int i = 0; i < N - 1; ++i)
+	{
+		for (int j = 0; j < N - 1; ++j)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				arr[j] += arr[j + 1];
+				arr[j + 1] = arr[j] - arr[j + 1];
+				arr[j] -= arr[j + 1];
+			}
+		}
+	}
+}

@@ -1,0 +1,37 @@
+#include <iostream>
+
+class Number
+{
+private:
+	int num, reNum;
+public:
+	Number()
+	{
+		set_num();
+		make_reNum();
+	}
+
+	void make_reNum()
+	{
+		reNum = num / 10;
+		reNum += (num % 10) * 10;
+	}
+
+	void print_sum()
+	{
+		std::cout << num << " + " << reNum << " = " << num + reNum;
+	}
+
+	void set_num()
+	{
+		std::cin >> num;
+	}
+};
+
+int main()
+{
+	Number N;
+	N.print_sum();
+
+	return 0;
+}

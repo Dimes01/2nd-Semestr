@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Файлы ввод/вывод">
+      <UniqueIdentifier>{2a9966b8-34fd-427a-b8d2-40675c8bf107}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Программирование">
+      <UniqueIdentifier>{160fede3-7bd4-41fa-a18b-c281a3d73002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Программирование\Лабораторная 1">
+      <UniqueIdentifier>{b7a43594-d196-4218-98a1-aea9ca6571b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Программирование\Лабораторная 2">
+      <UniqueIdentifier>{2eb90026-f39d-441a-b6f7-6bff311f1d3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Программирование\Лабораторная 3">
+      <UniqueIdentifier>{dc52f426-860f-43bf-bbec-c681879b74e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Программирование\Лабораторная 4">
+      <UniqueIdentifier>{f0da4b39-8b86-473c-9fea-69469c199b1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Дискретная математика">
+      <UniqueIdentifier>{3f5415e8-e542-4f3b-8731-0635d3a45062}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="input.txt">
+      <Filter>Файлы ресурсов\Файлы ввод/вывод</Filter>
+    </Text>
+    <Text Include="1A.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 1</Filter>
+    </Text>
+    <Text Include="1B.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 1</Filter>
+    </Text>
+    <Text Include="1C.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 1</Filter>
+    </Text>
+    <Text Include="1D.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 1</Filter>
+    </Text>
+    <Text Include="1E.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 1</Filter>
+    </Text>
+    <Text Include="1F.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 1</Filter>
+    </Text>
+    <Text Include="2A.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="2B.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="2B_input.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="2B_output.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="2B_Vahrushev.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="2C.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="2C_input.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="2C_output.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="2D.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="2E.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="2F.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="2G.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="2H.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="3A.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 3</Filter>
+    </Text>
+    <Text Include="3B.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 3</Filter>
+    </Text>
+    <Text Include="3C.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 3</Filter>
+    </Text>
+    <Text Include="3D.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 3</Filter>
+    </Text>
+    <Text Include="3E.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 3</Filter>
+    </Text>
+    <Text Include="3F.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 3</Filter>
+    </Text>
+    <Text Include="3G.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 3</Filter>
+    </Text>
+    <Text Include="3H.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 3</Filter>
+    </Text>
+    <Text Include="4A.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 4</Filter>
+    </Text>
+    <Text Include="4B.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 4</Filter>
+    </Text>
+    <Text Include="output.txt">
+      <Filter>Файлы ресурсов\Файлы ввод/вывод</Filter>
+    </Text>
+    <Text Include="4C.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 4</Filter>
+    </Text>
+    <Text Include="4D.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 4</Filter>
+    </Text>
+    <Text Include="4E.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 4</Filter>
+    </Text>
+    <Text Include="4F.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 4</Filter>
+    </Text>
+    <Text Include="Лабораторная 1.txt">
+      <Filter>Файлы ресурсов\Дискретная математика</Filter>
+    </Text>
+    <Text Include="Лабораторная 2.txt">
+      <Filter>Файлы ресурсов\Дискретная математика</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="2A_input.txt">
+      <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </None>
+  </ItemGroup>
+</Project>

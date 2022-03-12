@@ -1,0 +1,37 @@
+#include <iostream>
+#include <cmath>
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+double getArea(double, double, double, double, double, double);
+double height(double, double, double, double, double);
+
+int main()
+{
+	float ax, ay, bx, by, cx, cy, dx, dy, h1, h2, h3, h = 10000000;
+	cin >> ax >> ay >> bx >> by >> cx >> cy >> dx >> dy;
+	h1 = height(getArea(ax, ay, bx, by, dx, dy), ax, ay, bx, by);
+	h2 = height(getArea(ax, ay, dx, dy, cx, cy), ax, ay, cx, cy);
+	h3 = height(getArea(dx, dy, bx, by, cx, cy), bx, by, cx, cy);
+	if (h > h1) h = h1;
+	if (h > h2) h = h2;
+	if (h > h3) h = h3;
+	printf("%.4f", h);
+	return 0;
+}
+
+double getArea(double ax, double ay, double bx, double by, double cx, double cy)
+{
+	double res = ((bx - ax) * (ay + by) + (cx - bx) * (cy + by) + (ax - cx) * (ay + cy)) / 2;
+	if (res < 0) res = -res;
+	return res;
+}
+
+double height(double s, double ax, double ay, double bx, double by)
+{
+	double len = powf(((ax - bx) * (ax - bx) + (ay - by) * (ay - by)), 0.5);
+	double h = 2 * s / len;
+	return h;
+}

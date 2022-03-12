@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+
+using std::cin;
+using std::cout;
+using std::endl;
+
+int main()
+{
+	std::vector<int> A;
+	int N, num;
+
+	cin >> N;
+	for (int i = 0; i < N; ++i)
+	{
+		cin >> num;
+		A.push_back(num);
+	}
+	int m = 0;
+
+	bool flag = true;
+	for (int i = 1; i <= N; ++i)
+	{
+		for (int j = 0; j < i; ++j)
+		{
+			if (m < N)
+			{
+				if (m == N - 1) cout << A[m] << '\n';
+				else if (j < i - 1) cout << A[m] << ' ';
+				else cout << A[m] << '\n';
+			}
+			else
+			{
+				flag = false;
+				break;
+			}
+			++m;
+		}
+		if (flag == false) break;
+	}
+
+	for (int i = 0; i < N; ++i)
+	{
+		if (i < N - 1) cout << A[i] << ' ';
+		else cout << A[i];
+	}
+
+	return 0;
+}

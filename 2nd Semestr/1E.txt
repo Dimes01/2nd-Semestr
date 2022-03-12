@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+class String
+{
+private:
+	int number_of_words, len_str, len_max_word;
+	int pos1, pos2;
+	std::vector<int> spaces;
+	std::string str;
+public:
+	String()
+	{
+		set();
+		find_long_word();
+		print_long_word();
+	}
+	void set();
+	void find_long_word();
+	void print_long_word();
+};
+
+int main()
+{
+	String A;
+	return 0;
+}
+
+void String::set()
+{
+	std::getline(std::cin, str);
+	len_str = str.length();
+}
+void String::find_long_word()
+{
+	for (int i = 0, j = 0; i < len_str; ++i)
+	{
+		if (str[i] == ' ') spaces.push_back(i);
+	}
+	spaces.push_back(len_str);
+	len_max_word = spaces[0];
+	pos1 = -1;
+	pos2 = spaces[0];
+	int len_spaces = spaces.size();
+	for (int i = 0; i < len_spaces - 1; ++i)
+	{
+		if (len_max_word < spaces[i + 1] - spaces[i] - 1)
+		{
+			len_max_word = spaces[i + 1] - spaces[i] - 1;
+			pos1 = spaces[i];
+			pos2 = spaces[i + 1];
+		}
+	}
+}
+void String::print_long_word()
+{
+	for (int i = pos1 + 1; i < pos2; ++i)
+	{
+		std::cout << str[i];
+	}
+}

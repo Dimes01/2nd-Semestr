@@ -1,0 +1,67 @@
+#include <iostream>
+#include <vector>
+
+using std::cin;
+using std::cout;
+using std::endl;
+
+class Triangle_Stirling
+{
+private:
+	int N;
+	std::vector<int> arr1{ 1 };
+	std::vector<int> arr2{ 0, 1 };
+
+public:
+	Triangle_Stirling()
+	{
+		set();
+		make_and_print_triangle();
+	}
+	void set() { cin >> N; }
+	void make_and_print_triangle();
+	void make_arr(int);
+	void print_arr(int);
+	void rewrite_arr(int);
+};
+
+int main()
+{
+	Triangle_Stirling A;
+	return 0;
+}
+
+void Triangle_Stirling::make_and_print_triangle()
+{
+	for (int i = 1; i <= N; ++i)
+	{
+		make_arr(i);
+		print_arr(i);
+		rewrite_arr(i);
+	}
+}
+
+void Triangle_Stirling::make_arr(int len)
+{
+	for (int i = 2; i < len; ++i)
+	{
+		arr1.push_back(0);
+		arr2.push_back(0);
+		arr2[i] = arr1[i] * i + arr1[i - 1];
+	}
+}
+
+void Triangle_Stirling::print_arr(int len)
+{
+	for (int i = 0; i < len; ++i)
+	{
+		if (len == 1) cout << arr1[i] << endl;
+		else if (i < len - 1) cout << arr2[i] << ' ';
+		else cout << arr2[i] << endl;
+	}
+}
+
+void Triangle_Stirling::rewrite_arr(int len)
+{
+	arr1 = arr2;
+}

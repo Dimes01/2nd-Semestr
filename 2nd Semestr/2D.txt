@@ -1,0 +1,91 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+class Text
+{
+private:
+	std::ifstream inf{ "input.txt" };
+	std::ofstream out{ "output.txt" };
+	std::string buf;
+	std::string arr_spaces;
+	int count_str = 0;
+
+public:
+	Text()
+	{
+		make_txt();
+	}
+	void make_txt();
+	void write(int&, int, int);
+	void next_word(int&, int);
+	bool find_A(int);
+	bool next_word_not_A(int, int);
+};
+
+
+int main()
+{
+	Text A;
+	return 0;
+}
+
+
+void Text::make_txt()
+{
+	while (getline(inf, buf))
+	{
+		int i = 0;
+		int len_s = buf.length();
+		int count_word = 0;
+		if (count_str > 0) out << endl;
+		while (i < len_s)
+		{
+			if (find_A(i))
+			{
+				next_word(i, len_s);
+				++i;
+			}
+			else
+			{
+				++count_word;
+				write(i, len_s, count_word);
+				++i;
+			}
+		}
+		++count_str;
+	}
+}
+void Text::write(int &index, int len, int cnt_word)
+{
+	if (cnt_word > 1) out << ' ';
+	while (index < len)
+	{
+		if (buf[index] == ' ' || buf[index] == '\n') break;
+		else out << buf[index];
+		++index;
+	}
+}
+void Text::next_word(int &index, int len)
+{
+	while (index < len)
+	{
+		if (buf[index] == ' ' || buf[index] == '\n') break;
+		else ++index;
+	}
+}
+bool Text::find_A(int index)
+{
+	if (buf[index] == 'A') return true;
+	else return false;
+}
+bool Text::next_word_not_A(int index, int len)
+{
+	if (index >= len) return false;
+	if (buf[index] != 'A') return true;
+	else return false;
+}

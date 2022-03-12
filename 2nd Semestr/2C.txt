@@ -1,0 +1,69 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::ifstream;
+using std::ofstream;
+using std::string;
+
+int stepen(int a, int b)
+{
+	if (b == 0) return 1;
+	int c = a;
+	for (int i = 1; i < b; ++i) c *= a;
+	return c;
+}
+
+class File
+{
+private:
+	int num = 0, count = 0, num_str = 0;	
+	string num_;
+	string buf;
+	ifstream inp{ "input.txt" };
+	ofstream out{ "output.txt" };
+
+public:
+	File()
+	{
+		make_num();
+		make();
+	}
+	void make_num();
+	void make();
+};
+
+int main()
+{
+	File A;
+	return 0;
+}
+
+void File::make_num()
+{
+	getline(inp, num_);
+	int len = num_.length();
+	for (int i = 0; i < len; ++i)
+	{
+		num += (num_[len - i - 1] - 48) * stepen(10, i);
+	}
+}
+void File::make()
+{
+	while (getline(inp, buf))
+	{
+		++num_str;
+		if (count != 0) out << '\n';
+		++count;
+		if (count == num + 1 && num != 0)
+		{
+			out << "-8-8-8-8-8-8-8-\n";
+			count = 1;
+		}
+		out << buf;
+	}
+	if (num_str % (num) == 0) out << "\n-8-8-8-8-8-8-8-";
+}

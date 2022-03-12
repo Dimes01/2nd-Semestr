@@ -1,0 +1,79 @@
+#include <iostream>
+#include <cmath>
+
+// Находим длину отрезка по координатам двух точек
+float len_line(int x1, int y1, int x2, int y2)
+{
+	float len2 = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+	float len = pow(len2, 0.5);
+	return len;
+}
+
+class Figure
+{
+private:
+	int x1, x2, x3, y1, y2, y3;
+	float ab, ac, bc, ab2, ac2, bc2;
+public:
+	Figure()
+	{
+		set_coor();
+		ab = len_line(x1, y1, x2, y2);
+		ac = len_line(x1, y1, x3, y3);
+		bc = len_line(x2, y2, x3, y3);
+		sort();
+		ab2 = ab * ab;
+		ac2 = ac * ac;
+		bc2 = bc * bc;
+		print();
+	}
+	// Вводим координаты
+	void set_coor() { std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3; }
+
+	// Проверка существования треугольника
+	bool exist_triangle()
+	{
+		if (ab + bc > ac && ab + ac > bc && bc + ac > ab) return true;
+		else return false;
+	}
+
+	// Сортируем
+	void sort()
+	{
+		if (ab > ac)
+		{
+			ab += ac;
+			ac -= ab;
+			ac = -ac;
+			ab -= ac;
+		}
+		if (bc > ac)
+		{
+			bc += ac;
+			ac -= bc;
+			ac = -ac;
+			bc -= ac;
+		}
+	}
+
+	// Вывод итогового сообщения
+	void print()
+	{
+		if (exist_triangle())
+		{
+			if (ab2 + bc2 == ac2)
+				std::cout << "Treugol'nik pryamougol'nyi";
+			else if (ab2 + bc2 > ac2)
+				std::cout << "Treugol'nik ostrougol'nyi";
+			else if (ab2 + bc2 < ac2)
+				std::cout << "Treugol'nik tupougol'nyi";
+		}
+		else std::cout << "Treugol'nika ne suschestvuet";
+	}
+};
+
+int main()
+{
+	Figure ABC;
+	return 0;
+}

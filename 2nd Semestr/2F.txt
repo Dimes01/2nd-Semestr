@@ -1,0 +1,44 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+class Text
+{
+private:
+	//std::ifstream inf{ "input.txt" };
+	std::ofstream out{ "output.txt" };
+	std::string str;
+	int N, count_str = 0;
+
+public:
+	Text()
+	{
+		set();
+		multiplication();
+	}
+
+	void set() { cin >> N; }
+	void multiplication()
+	{
+		for (int i = 1; i <= N; ++i)
+		{
+			if (count_str > 0) out << endl;
+			for (int j = 1; j <= N; ++j)
+			{
+				if (j == N) out << i * j;
+				else out << i * j << ' ';
+			}
+			++count_str;
+		}
+	}
+};
+
+int main()
+{
+	Text A;
+	return 0;
+}

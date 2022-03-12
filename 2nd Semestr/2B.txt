@@ -1,0 +1,59 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+class File
+{
+private:
+	int m_count_word;
+	std::string name_input;
+	std::string name_output;
+	std::ifstream infile{ "input.txt" };
+	std::ofstream outfile{ "output.txt" };
+
+public:
+	File()
+	{
+		set();
+		count();
+		write();
+	}
+	void set();
+	void count();
+	void write();
+};
+
+
+int main()
+{
+	File input;
+	return 0;
+}
+
+
+void File::set()
+{
+	std::cin >> name_input >> name_output;
+}
+
+void File::write()
+{
+	outfile << m_count_word;
+}
+
+void File::count()
+{
+	std::string buf;
+	while (getline(infile, buf)) 
+	{
+		int len_buf = buf.length();
+		if (len_buf != 0)
+		{
+			for (int i = 0; i < len_buf - 1; ++i)
+			{
+				if (buf[i] == ' ' && buf[i + 1] != ' ') ++m_count_word;
+			}
+			++m_count_word;
+		}
+	}
+}

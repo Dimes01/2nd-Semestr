@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+
+class String
+{
+private:
+	int len_main_str, len_find_str;
+	int pos1;
+	std::string main_str;
+	std::string find_str;
+	std::string write_str;
+
+public:
+	String()
+	{
+		set();
+		make_new_str();
+		print_new_str();
+	}
+	void set();
+	void make_new_str();
+	void print_new_str();
+};
+
+int main()
+{
+	String A;
+	return 0;
+}
+
+void String::set()
+{
+	std::getline(std::cin, main_str);
+	std::cin >> find_str >> write_str;
+	len_main_str = main_str.length();
+	find_str.insert(0, 1, ' ');
+	find_str.push_back(' ');
+	len_find_str = find_str.length();
+}
+void String::make_new_str()
+{
+	pos1 = main_str.find(find_str);
+	main_str.insert(pos1 + len_find_str - 1, write_str);
+	main_str.insert(pos1 + len_find_str - 1, " ");
+}
+void String::print_new_str()
+{
+	std::cout << main_str;
+}

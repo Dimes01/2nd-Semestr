@@ -1,0 +1,59 @@
+#include <iostream>
+#include <vector>
+
+using std::cin;
+using std::cout;
+using std::endl;
+
+class Polinom
+{
+private:
+	int d, a;
+	std::vector<int> K;
+	std::vector<int> mK;
+
+public:
+	Polinom()
+	{
+		set();
+		make_polinom();
+		print();
+	}
+	void set();
+	void make_polinom();
+	void print();
+};
+
+int main()
+{
+	Polinom A;
+	return 0;
+}
+
+void Polinom::set()
+{
+	cin >> d;
+	K.resize(d + 1);
+	mK.resize(d + 2, 0);
+	for (int i = 0; i <= d; ++i) cin >> K[i];
+	cin >> a;
+}
+
+void Polinom::make_polinom()
+{
+	mK[0] = K[0];
+	for (int i = 1; i <= d + 1; ++i)
+	{
+		if (i < d + 1) mK[i] += K[i] + (-a) * K[i - 1];
+		else mK[i] += (-a) * K[i - 1];
+	}
+}
+
+void Polinom::print()
+{
+	for (int i = 0; i <= d + 1; ++i)
+	{
+		if (i == d + 1) cout << mK[i];
+		else cout << mK[i] << ' ';
+	}
+}

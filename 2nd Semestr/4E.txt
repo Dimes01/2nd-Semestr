@@ -1,0 +1,28 @@
+#include <iostream>
+#include <cmath>
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+double getArea(int, int, int, int, int, int);
+
+int main()
+{
+	int ax, ay, bx, by, cx, cy, dx, dy, s1, s2, s3, s;
+	cin >> ax >> ay >> bx >> by >> cx >> cy >> dx >> dy;
+	s1 = getArea(ax, ay, bx, by, dx, dy);
+	s2 = getArea(ax, ay, dx, dy, cx, cy);
+	s3 = getArea(dx, dy, bx, by, cx, cy);
+	s = getArea(ax, ay, bx, by, cx, cy);
+	if (s1 + s2 + s3 == s) cout << 1;
+	else cout << 0;;
+	return 0;
+}
+
+double getArea(int ax, int ay, int bx, int by, int cx, int cy)
+{
+	double res = ((bx - ax) * (ay + by) + (cx - bx) * (cy + by) + (ax - cx) * (ay + cy)) / 2;
+	if (res < 0) res = -res;
+	return res;
+}

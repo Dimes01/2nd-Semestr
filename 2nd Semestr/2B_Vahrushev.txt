@@ -1,0 +1,29 @@
+#include <iostream>
+#include <fstream>
+
+using std::cout;
+using std::ifstream;
+using std::ofstream;
+using std::string;
+
+int main()
+{
+int counter{ 0 };
+
+ifstream infile("input.txt");
+string buffer;
+
+while (!infile.eof())
+{
+infile » buffer;
+if (buffer.length()) counter++;
+buffer.clear();
+}
+
+ofstream outfile("output.txt");
+outfile « counter;
+
+infile.close();
+outfile.close();
+return 0;
+}

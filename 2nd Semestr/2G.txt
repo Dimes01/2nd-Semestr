@@ -1,0 +1,52 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+class Matrix
+{
+private:
+	std::ifstream inf{ "input.txt" };
+	std::ofstream out{ "output.txt" };
+	std::string str;
+	int N, M, max_sum = -1001, num_str = 1;
+
+public:
+	Matrix()
+	{
+		set();
+		find_max_sum();
+		write();
+	}
+	void set() { inf >> N >> M; }
+	void find_max_sum();
+	void write() { out << num_str; }
+};
+
+int main()
+{
+	Matrix A;
+	return 0;
+}
+
+void Matrix::find_max_sum()
+{
+	int num;
+	for (int i = 1; i <= N; ++i)
+	{
+		int sum = 0;
+		for (int j = 1; j <= M; ++j)
+		{
+			inf >> num;
+			sum += num;
+		}
+		if (sum > max_sum)
+		{
+			max_sum = sum;
+			num_str = i;
+		}
+	}
+}

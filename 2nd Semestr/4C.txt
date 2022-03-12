@@ -1,0 +1,45 @@
+#include <iostream>
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+//////////////////////////////////////////////////
+
+template <class T>
+class Triangle
+{
+private:
+    T x1, y1, x2, y2, x3, y3;
+    T SArea;
+
+public:
+    Triangle()
+    {
+        set();
+        area();
+        getArea();
+    }
+    void set() { cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3; }
+    void area()
+    {
+        area = myAbs((x2 - x1) * (y1 + y2) + (x3 - x2) * (y3 + y2) + (x1 - x3) * (y1 + y3)) / 2;
+    }
+    T myAbs(T a) { return (a < 0) ? -a : a; }
+    T getArea() { return SArea; }
+};
+
+//////////////////////////////////////////////////
+
+int main()
+{
+    Triangle<float> ABC;
+    Triangle<float> DEF;
+    if (ABC.getArea() >= DEF.getArea())
+    {
+        cout << 1;
+    }
+    else cout << 2;
+
+    return 0;
+}

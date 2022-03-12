@@ -1,0 +1,77 @@
+#include <iostream>
+#include <vector>
+
+using std::cin;
+using std::cout;
+using std::endl;
+
+class Numeric
+{
+private:
+	int N1, N2, max_len;
+	std::vector<int> arr1;
+	std::vector<int> arr2;
+	std::vector<int> sum12;
+	std::string str1;
+	std::string str2;
+
+public:
+	Numeric()
+	{
+		set();
+		sum_arr();
+		print_arr();
+	}
+	void set();
+	void sum_arr();
+	void print_arr();
+};
+
+int main()
+{
+	Numeric A;
+	return 0;
+}
+
+void Numeric::sum_arr()
+{
+	for (int i = 0; i < max_len; ++i)
+	{
+		sum12[max_len - i] += arr1[max_len - i - 1] + arr2[max_len - i - 1];
+		if (sum12[max_len - i] > 9)
+		{
+			sum12[max_len - i] -= 10;
+			sum12[max_len - i - 1] = 1;
+		}
+	}
+}
+
+void Numeric::set()
+{
+	cin >> N1 >> N2 >> str1 >> str2;
+	if (N1 > N2)
+	{
+		max_len = N1;
+		str2.insert(0, N1 - N2, '0');
+	}
+	else if (N2 > N1)
+	{
+		max_len = N2;
+		str1.insert(0, N2 - N1, '0');
+	}
+	else max_len = N1;
+	arr1.reserve(max_len);
+	arr2.reserve(max_len);
+	sum12.resize(max_len + 1, 0);
+	for (int i = 0; i < max_len; ++i) arr1.push_back(str1[i] - 48);
+	for (int i = 0; i < max_len; ++i) arr2.push_back(str2[i] - 48);
+}
+
+void Numeric::print_arr()
+{
+	for (int i = 0; i <= max_len; ++i)
+	{
+		if (sum12[i] == 0 && i == 0) continue;
+		else cout << sum12[i];
+	}
+}

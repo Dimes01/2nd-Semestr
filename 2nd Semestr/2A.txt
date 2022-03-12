@@ -1,0 +1,31 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+class File
+{
+private:
+	int m_count_str;
+	std::ifstream infile{ "input.txt" };
+
+public:
+	File()
+	{
+		count();
+		print();
+	}
+	void count();
+	void print() { std::cout << m_count_str; }
+};
+
+int main()
+{
+	File input;
+	return 0;
+}
+
+void File::count()
+{
+	std::string buf;
+	while (getline(infile, buf)) ++m_count_str;
+}

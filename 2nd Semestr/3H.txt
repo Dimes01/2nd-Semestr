@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+
+using std::cin;
+using std::cout;
+using std::endl;
+
+class Matrix
+{
+private:
+	int m, n, max_sum = -100000, max_sum_str;
+
+public:
+	Matrix()
+	{
+		set();
+		cout << max_sum_str;
+	}
+	void set();
+};
+
+int main()
+{
+	Matrix A;
+	return 0;
+}
+
+void Matrix::set()
+{
+	cin >> m >> n;
+	int num, sum;
+	for (int i = 0; i < m; ++i)
+	{
+		sum = 0;
+		for (int j = 0; j < n; ++j)
+		{
+			cin >> num;
+			sum += num;
+		}
+		if (sum > max_sum)
+		{
+			max_sum = sum;
+			max_sum_str = i;
+		}
+	}
+}

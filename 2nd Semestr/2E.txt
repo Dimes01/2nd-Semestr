@@ -1,0 +1,41 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+class Text
+{
+private:
+	std::ifstream inf{ "input.txt" };
+	std::ofstream out{ "output.txt" };
+	std::string str;
+	int len, count_str = 0;
+
+public:
+	Text()
+	{
+		make_txt();
+	}
+	void make_txt()
+	{
+		while (getline(inf, str))
+		{
+			if (count_str > 0) out << endl;
+			len = str.length();
+			for (int i = 0; i < len; ++i)
+			{
+				out << str[len - i - 1];
+			}
+			++count_str;
+		}
+	}
+};
+
+int main()
+{
+	Text A;
+	return 0;
+}

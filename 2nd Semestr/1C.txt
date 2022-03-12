@@ -1,0 +1,41 @@
+#include <iostream>
+#include <cstring>
+
+class String
+{
+private:
+	char str[1001];
+	int len_str;
+public:
+	String()
+	{
+		set();
+		len_str = strlen(str);
+		rewrite();
+		print();
+	}
+
+	void set() { std::cin.getline(str, 1001); }
+	bool is_small(char s)
+	{
+		if (s > 96 && s < 123) return true;
+		else return false;
+	}
+	void rewrite()
+	{
+		for (int i = 0; i < len_str; ++i)
+		{
+			if (is_small(str[i])) str[i] -= 32;
+		}
+	}
+	void print()
+	{
+		std::cout << str;
+	}
+};
+
+int main()
+{
+	String A;
+	return 0;
+}

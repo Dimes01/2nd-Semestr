@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::vector;
+
+int max_elem_pos(vector<int> a);
+int min_elem_pos(vector<int> a);
+
+int main()
+{
+	vector<int> arr;
+	int max_pos, min_pos, n;
+	cin >> n;
+	arr.resize(n);
+	for (int i = 0; i < n; ++i) cin >> arr[i];
+
+	max_pos = max_elem_pos(arr);
+	min_pos = min_elem_pos(arr);
+	if (max_pos + min_pos <= arr.size()) cout << arr[max_pos + min_pos - 1];
+	else cout << "Vne massiva";
+
+	return 0;
+}
+
+int max_elem_pos(vector<int> a)
+{
+	int pos, max = -1;
+	for (int i = 0; i < a.size(); ++i)
+	{
+		if (a[i] > max)
+		{
+			max = a[i];
+			pos = i;
+		}
+	}
+	return ++pos;
+}
+int min_elem_pos(vector<int> a)
+{
+	int pos, min = 1000;
+	for (int i = 0; i < a.size(); ++i)
+	{
+		if (a[i] < min)
+		{
+			min = a[i];
+			pos = i;
+		}
+	}
+	return ++pos;
+}

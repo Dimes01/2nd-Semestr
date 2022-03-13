@@ -179,6 +179,7 @@
     <Text Include="output.txt" />
     <Text Include="Лабораторная 1.txt" />
     <Text Include="Лабораторная 2.txt" />
+    <Text Include="Лабораторная 3.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="2A_input.txt" />

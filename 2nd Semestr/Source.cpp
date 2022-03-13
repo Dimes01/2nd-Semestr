@@ -10,9 +10,11 @@ using std::string;
 //////////////////////////////////////////////////////////////////////
 
 // Печать элементов строки через пробел
-void print(string);
+template <class t>
+void print(t);
 // Печать элементов строки в виде множества
-void printBraces(string);
+template <class t>
+void printBraces(t);
 
 
 // Сортировка по возрастанию всех элементов строки
@@ -64,24 +66,27 @@ int main()
 
 //////////////////////////////////////////////////////////////////////
 
-void print(string str)
+template <class t>
+void print(t str)
 {
-	for (int i = 0; i < str.length(); ++i)
+	for (int i = 0; i < str.size(); ++i)
 	{
-		if (i < str.length() - 1) cout << str[i] << ' ';
+		if (i < str.size() - 1) cout << str[i] << ' ';
 		else cout << str[i];
 	}
 	cout << endl;
 }
-void printBraces(string str)
+template <class t>
+void printBraces(t str)
 {
 	cout << "{";
-	for (int i = 0; i < str.length(); ++i)
+	for (int i = 0; i < str.size(); ++i)
 	{
-		if (i < str.length() - 1) cout << str[i] << ", ";
+		if (i < str.size() - 1) cout << str[i] << ", ";
 		else cout << str[i] << "}" << endl;
 	}
 }
+
 string sort(string a)
 {
 	for (int i = 0; i < a.length(); ++i)

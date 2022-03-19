@@ -73,6 +73,7 @@ int main()
 	string rv = arrayRBin(av, bv, cv);
 	printBraces(u, rv);
 
+	system("pause");
 	return 0;
 }
 
@@ -102,15 +103,20 @@ template <class t1, class t2>
 void printBraces(t1 str, t2 mask)
 {
 	int i = 0;
-	cout << "{";
+	bool firstElement = true;
+	cout << '{';
 	for (i; i < str.size(); ++i)
 	{
 		if (mask[i] == '1' || mask[i] == 1)
 		{
-			if (i < str.size() - 1) cout << str[i] << ", ";
+			if (!firstElement) cout << ", ";
+			if (i < str.size() - 1) cout << str[i];
+			firstElement = false;
 		}
 	}
-	cout << str[i - 1] << "}" << endl;
+	if (mask[i] == '1' || mask[i] == 1)
+		cout << str[i - 1] << '}' << endl;
+	else cout << '}' << endl;
 }
 
 string razn(string a, string b)

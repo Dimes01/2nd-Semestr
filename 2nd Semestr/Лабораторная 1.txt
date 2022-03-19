@@ -45,7 +45,8 @@ int main()
 	Alphabet A;
 
 	print(A.get());
-
+	
+	system("pause");
 	return 0;
 }
 

@@ -67,6 +67,7 @@ int main()
 	getline(cin, rv);
 	printBraces(u, rv);
 
+	system("pause");
 	return 0;
 }
 

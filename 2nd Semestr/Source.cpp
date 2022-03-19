@@ -37,13 +37,13 @@ string makeVector(string, string);
 
 //////////////////////////////////////////////////////////////////////
 
-class Stroka
+class Alphabet
 {
 private:
 	string str;	// Изначальная строка
 	string a;	// Строка-алфавит
 public:
-	Stroka();
+	Alphabet();
 
 	// Вводим строку
 	void set() { cin >> str; }
@@ -58,9 +58,9 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	Stroka A;
-	Stroka B;
-	Stroka C;
+	Alphabet A;
+	Alphabet B;
+	Alphabet C;
 
 	// Печатаем множество R (вариант 17)
 	cout << "R = ";
@@ -259,7 +259,7 @@ string makeVector(string a1, string a2)
 
 //////////////////////////////////////////////////////////////////////
 
-Stroka::Stroka()
+Alphabet::Alphabet()
 {
 	set();
 	a = sort(str);

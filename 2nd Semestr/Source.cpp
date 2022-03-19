@@ -65,18 +65,12 @@ int main()
 	Alphabet B;
 	Alphabet C;
 
-	// Задача "Векторы"
 	string u = AorB(A.get(), B.get());
 	u = AorB(u, C.get());
-	print(u);
 	string av = makeVector(u, A.get());
 	string bv = makeVector(u, B.get());
 	string cv = makeVector(u, C.get());
 	string uv = arrayRBin(av, bv, cv);
-	print(av);
-	print(bv);
-	print(cv);
-	print(uv);
 	printBraces(u, uv);
 
 	return 0;
@@ -107,15 +101,16 @@ void printBraces(t str)
 template <class t1, class t2>
 void printBraces(t1 str, t2 mask)
 {
+	int i = 0;
 	cout << "{";
-	for (int i = 0; i < str.size(); ++i)
+	for (i; i < str.size(); ++i)
 	{
 		if (mask[i] == '1' || mask[i] == 1)
 		{
 			if (i < str.size() - 1) cout << str[i] << ", ";
-			else cout << str[i] << "}" << endl;
 		}
 	}
+	cout << str[i - 1] << "}" << endl;
 }
 
 string razn(string a, string b)

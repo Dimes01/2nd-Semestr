@@ -15,6 +15,8 @@ void print(t);
 // Печать элементов строки в виде множества
 template <class t>
 void printBraces(t);
+template <class t1, class t2>
+void printbraces(t1, t2);
 
 
 // Сортировка по возрастанию всех элементов строки
@@ -97,6 +99,19 @@ void printBraces(t str)
 	{
 		if (i < str.size() - 1) cout << str[i] << ", ";
 		else cout << str[i] << "}" << endl;
+	}
+}
+template <class t1, class t2>
+void printBraces(t1 str, t2 mask)
+{
+	cout << "{";
+	for (int i = 0; i < str.size(); ++i)
+	{
+		if (mask[i] == '1' || mask[i] == 1)
+		{
+			if (i < str.size() - 1) cout << str[i] << ", ";
+			else cout << str[i] << "}" << endl;
+		}
 	}
 }
 

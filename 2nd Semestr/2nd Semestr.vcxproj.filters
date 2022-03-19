@@ -155,6 +155,12 @@
     <Text Include="Лабораторная 3.txt">
       <Filter>Файлы ресурсов\Дискретная математика</Filter>
     </Text>
+    <Text Include="Лабораторная 4_1.txt">
+      <Filter>Файлы ресурсов\Дискретная математика</Filter>
+    </Text>
+    <Text Include="Лабораторная 4_2.txt">
+      <Filter>Файлы ресурсов\Дискретная математика</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="2A_input.txt">

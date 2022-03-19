@@ -61,11 +61,20 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	string u;
-	string uv;
-	getline(cin, u);
-	getline(cin, uv);
-	printBraces(u, uv);
+	Alphabet A;
+	Alphabet B;
+	Alphabet C;
+
+	string u = AorB(A.get(), B.get());
+	u = AorB(u, C.get());
+	string av = makeVector(u, A.get());
+	string bv = makeVector(u, B.get());
+	string cv = makeVector(u, C.get());
+	string rv = arrayRBin(av, bv, cv);
+	print(av);
+	print(bv);
+	print(cv);
+	print(rv);
 
 	return 0;
 }

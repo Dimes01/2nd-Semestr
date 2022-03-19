@@ -70,8 +70,8 @@ int main()
 	string av = makeVector(u, A.get());
 	string bv = makeVector(u, B.get());
 	string cv = makeVector(u, C.get());
-	string uv = arrayRBin(av, bv, cv);
-	printBraces(u, uv);
+	string rv = arrayRBin(av, bv, cv);
+	printBraces(u, rv);
 
 	return 0;
 }

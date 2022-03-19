@@ -15,6 +15,9 @@ void print(t);
 // Печать элементов строки в виде множества
 template <class t>
 void printBraces(t);
+// Перегрузка путём добавления параметра-маски для печати элементов
+template <class t1, class t2>
+void printBraces(t1, t2);
 
 
 // Сортировка по возрастанию всех элементов строки
@@ -23,7 +26,7 @@ string sort(string);
 string clean(string);
 
 
-// Вариант 17
+// Вариант 17; Bin - для работы с характеристическими векторами
 string arrayR(string, string, string);
 string arrayRBin(string, string, string);
 // A / B
@@ -37,13 +40,13 @@ string makeVector(string, string);
 
 //////////////////////////////////////////////////////////////////////
 
-class Stroka
+class Alphabet
 {
 private:
 	string str;	// Изначальная строка
 	string a;	// Строка-алфавит
 public:
-	Stroka();
+	Alphabet();
 
 	// Вводим строку
 	void set() { cin >> str; }
@@ -58,25 +61,20 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	Stroka A;
-	Stroka B;
-	Stroka C;
+	Alphabet A;
+	Alphabet B;
+	Alphabet C;
 
-	// Печатаем множество R (вариант 17)
-	cout << "R = ";
-	printBraces(arrayR(A.get(), B.get(), C.get()));
-
-	// Задача "Векторы"
 	string u = AorB(A.get(), B.get());
 	u = AorB(u, C.get());
-	print(u);
 	string av = makeVector(u, A.get());
 	string bv = makeVector(u, B.get());
 	string cv = makeVector(u, C.get());
+	string rv = arrayRBin(av, bv, cv);
 	print(av);
 	print(bv);
 	print(cv);
-	print(arrayRBin(av, bv, cv));
+	print(rv);
 
 	return 0;
 }
@@ -102,6 +100,25 @@ void printBraces(t str)
 		if (i < str.size() - 1) cout << str[i] << ", ";
 		else cout << str[i] << "}" << endl;
 	}
+}
+template <class t1, class t2>
+void printBraces(t1 str, t2 mask)
+{
+	int i = 0;
+	bool firstElement = true;
+	cout << '{';
+	for (i; i < str.size(); ++i)
+	{
+		if (mask[i] == '1' || mask[i] == 1)
+		{
+			if (!firstElement) cout << ", ";
+			if (i < str.size() - 1) cout << str[i];
+			firstElement = false;
+		}
+	}
+	if (mask[i] == '1' || mask[i] == 1)
+		cout << str[i - 1] << '}' << endl;
+	else cout << '}' << endl;
 }
 
 string razn(string a, string b)
@@ -232,7 +249,7 @@ string makeVector(string a1, string a2)
 	int i = 0, j = 0;
 	while (i < a1.length())
 	{
-		if (j >= a2.length())
+		if (j >= a2.length() || a1[i] < a2[j])
 		{
 			v.push_back('0');
 			++i;
@@ -242,11 +259,6 @@ string makeVector(string a1, string a2)
 			v.push_back('1');
 			++i;
 			++j;
-		}
-		else if (a1[i] < a2[j])
-		{
-			v.push_back('0');
-			++i;
 		}
 		else
 		{
@@ -259,7 +271,7 @@ string makeVector(string a1, string a2)
 
 //////////////////////////////////////////////////////////////////////
 
-Stroka::Stroka()
+Alphabet::Alphabet()
 {
 	set();
 	a = sort(str);

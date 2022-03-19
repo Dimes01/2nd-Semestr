@@ -62,10 +62,10 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	string u;
-	string uv;
+	string rv;
 	getline(cin, u);
-	getline(cin, uv);
-	printBraces(u, uv);
+	getline(cin, rv);
+	printBraces(u, rv);
 
 	return 0;
 }

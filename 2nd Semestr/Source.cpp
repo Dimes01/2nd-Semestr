@@ -64,17 +64,13 @@ int main()
 	Alphabet A;
 	Alphabet B;
 	Alphabet C;
+	string r = arrayR(A.get(), B.get(), C.get());
 
-	string u = AorB(A.get(), B.get());
-	u = AorB(u, C.get());
-	string av = makeVector(u, A.get());
-	string bv = makeVector(u, B.get());
-	string cv = makeVector(u, C.get());
-	string rv = arrayRBin(av, bv, cv);
-	print(av);
-	print(bv);
-	print(cv);
-	print(rv);
+	print(A.get());
+	print(B.get());
+	print(C.get());
+	cout << "R = ";
+	printBraces(r);
 
 	return 0;
 }

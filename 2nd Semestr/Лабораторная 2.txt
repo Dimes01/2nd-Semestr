@@ -10,9 +10,11 @@ using std::string;
 //////////////////////////////////////////////////////////////////////
 
 // Печать элементов строки через пробел
-void print(string);
+template <class t>
+void print(t);
 // Печать элементов строки в виде множества
-void printBraces(string);
+template <class t>
+void printBraces(t);
 
 
 // Сортировка по возрастанию всех элементов строки
@@ -21,7 +23,7 @@ string sort(string);
 string clean(string);
 
 
-// Вариант 17
+// Вариант 17;
 string arrayR(string, string, string);
 // A / B
 string razn(string, string);
@@ -30,13 +32,13 @@ string AorB(string, string);
 
 //////////////////////////////////////////////////////////////////////
 
-class Stroka
+class Alphabet
 {
 private:
 	string str;	// Изначальная строка
 	string a;	// Строка-алфавит
 public:
-	Stroka();
+	Alphabet();
 
 	// Вводим строку
 	void set() { cin >> str; }
@@ -51,67 +53,43 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	Stroka A;
-	Stroka B;
-	Stroka C;
+	Alphabet A;
+	Alphabet B;
+	Alphabet C;
+	string r = arrayR(A.get(), B.get(), C.get());
 
-	// Печатаем множество R (вариант 17)
+	print(A.get());
+	print(B.get());
+	print(C.get());
 	cout << "R = ";
-	printBraces(arrayR(A.get(), B.get(), C.get()));
+	printBraces(r);
 
 	return 0;
 }
 
 //////////////////////////////////////////////////////////////////////
 
-void print(string str)
+template <class t>
+void print(t str)
 {
-	for (int i = 0; i < str.length(); ++i)
+	for (int i = 0; i < str.size(); ++i)
 	{
-		if (i < str.length() - 1) cout << str[i] << ' ';
+		if (i < str.size() - 1) cout << str[i] << ' ';
 		else cout << str[i];
 	}
 	cout << endl;
 }
-void printBraces(string str)
+template <class t>
+void printBraces(t str)
 {
 	cout << "{";
-	for (int i = 0; i < str.length(); ++i)
+	for (int i = 0; i < str.size(); ++i)
 	{
-		if (i < str.length() - 1) cout << str[i] << ", ";
+		if (i < str.size() - 1) cout << str[i] << ", ";
 		else cout << str[i] << "}" << endl;
 	}
 }
-string sort(string a)
-{
-	for (int i = 0; i < a.length(); ++i)
-	{
-		bool flag = false;
-		for (int j = 0; j < a.length() - 1; ++j)
-		{
-			if (a[j + 1] < a[j])
-			{
-				a[j + 1] += a[j];
-				a[j] = a[j + 1] - a[j];
-				a[j + 1] -= a[j];
-				flag = true;
-			}
-		}
-		if (!flag) break;
-	}
-	return a;
-}
-string clean(string a)
-{
-	string clean_a;
-	int i;
-	for (i = 0; i < a.length() - 1; ++i)
-	{
-		if (a[i] != a[i + 1]) clean_a.push_back(a[i]);
-	}
-	clean_a.push_back(a[i]);
-	return clean_a;
-}
+
 string razn(string a, string b)
 {
 	string r;
@@ -172,9 +150,40 @@ string arrayR(string a, string b, string c)
 	return r;
 }
 
+string sort(string a)
+{
+	for (int i = 0; i < a.length(); ++i)
+	{
+		bool flag = false;
+		for (int j = 0; j < a.length() - 1; ++j)
+		{
+			if (a[j + 1] < a[j])
+			{
+				a[j + 1] += a[j];
+				a[j] = a[j + 1] - a[j];
+				a[j + 1] -= a[j];
+				flag = true;
+			}
+		}
+		if (!flag) break;
+	}
+	return a;
+}
+string clean(string a)
+{
+	string clean_a;
+	int i;
+	for (i = 0; i < a.length() - 1; ++i)
+	{
+		if (a[i] != a[i + 1]) clean_a.push_back(a[i]);
+	}
+	clean_a.push_back(a[i]);
+	return clean_a;
+}
+
 //////////////////////////////////////////////////////////////////////
 
-Stroka::Stroka()
+Alphabet::Alphabet()
 {
 	set();
 	a = sort(str);

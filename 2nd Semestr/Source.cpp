@@ -23,7 +23,7 @@ string sort(string);
 string clean(string);
 
 
-// Вариант 17
+// Вариант 17; Bin - для работы с характеристическими векторами
 string arrayR(string, string, string);
 string arrayRBin(string, string, string);
 // A / B

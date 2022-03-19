@@ -62,15 +62,8 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	Alphabet A;
-	Alphabet B;
-	Alphabet C;
-	string r = arrayR(A.get(), B.get(), C.get());
 
 	print(A.get());
-	print(B.get());
-	print(C.get());
-	cout << "R = ";
-	printBraces(r);
 
 	return 0;
 }

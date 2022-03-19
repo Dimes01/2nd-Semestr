@@ -10,9 +10,8 @@ using std::string;
 //////////////////////////////////////////////////////////////////////
 
 // Печать элементов строки через пробел
-void print(string);
-// Печать элементов строки в виде множества
-void printBraces(string);
+template <class t>
+void print(t);
 
 
 // Сортировка по возрастанию всех элементов строки
@@ -22,13 +21,13 @@ string clean(string);
 
 //////////////////////////////////////////////////////////////////////
 
-class Stroka
+class Alphabet
 {
 private:
 	string str;	// Изначальная строка
 	string a;	// Строка-алфавит
 public:
-	Stroka();
+	Alphabet();
 
 	// Вводим строку
 	void set() { cin >> str; }
@@ -43,7 +42,8 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	Stroka A;
+	Alphabet A;
+
 	print(A.get());
 
 	return 0;
@@ -51,24 +51,17 @@ int main()
 
 //////////////////////////////////////////////////////////////////////
 
-void print(string str)
+template <class t>
+void print(t str)
 {
-	for (int i = 0; i < str.length(); ++i)
+	for (int i = 0; i < str.size(); ++i)
 	{
-		if (i < str.length() - 1) cout << str[i] << ' ';
+		if (i < str.size() - 1) cout << str[i] << ' ';
 		else cout << str[i];
 	}
 	cout << endl;
 }
-void printBraces(string str)
-{
-	cout << "{";
-	for (int i = 0; i < str.length(); ++i)
-	{
-		if (i < str.length() - 1) cout << str[i] << ", ";
-		else cout << str[i] << "}" << endl;
-	}
-}
+
 string sort(string a)
 {
 	for (int i = 0; i < a.length(); ++i)
@@ -102,7 +95,7 @@ string clean(string a)
 
 //////////////////////////////////////////////////////////////////////
 
-Stroka::Stroka()
+Alphabet::Alphabet()
 {
 	set();
 	a = sort(str);

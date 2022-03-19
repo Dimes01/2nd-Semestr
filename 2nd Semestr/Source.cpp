@@ -241,7 +241,7 @@ string makeVector(string a1, string a2)
 	int i = 0, j = 0;
 	while (i < a1.length())
 	{
-		if (j >= a2.length())
+		if (j >= a2.length() || a1[i] < a2[j])
 		{
 			v.push_back('0');
 			++i;
@@ -251,11 +251,6 @@ string makeVector(string a1, string a2)
 			v.push_back('1');
 			++i;
 			++j;
-		}
-		else if (a1[i] < a2[j])
-		{
-			v.push_back('0');
-			++i;
 		}
 		else
 		{

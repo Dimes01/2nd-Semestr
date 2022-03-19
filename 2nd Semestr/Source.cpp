@@ -15,6 +15,7 @@ void print(t);
 // Печать элементов строки в виде множества
 template <class t>
 void printBraces(t);
+// Перегрузка путём добавления параметра-маски для печати элементов
 template <class t1, class t2>
 void printBraces(t1, t2);
 

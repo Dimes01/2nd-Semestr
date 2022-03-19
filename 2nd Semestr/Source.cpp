@@ -62,10 +62,6 @@ int main()
 	Alphabet B;
 	Alphabet C;
 
-	// Печатаем множество R (вариант 17)
-	cout << "R = ";
-	printBraces(arrayR(A.get(), B.get(), C.get()));
-
 	// Задача "Векторы"
 	string u = AorB(A.get(), B.get());
 	u = AorB(u, C.get());

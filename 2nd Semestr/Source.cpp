@@ -16,7 +16,7 @@ void print(t);
 template <class t>
 void printBraces(t);
 template <class t1, class t2>
-void printbraces(t1, t2);
+void printBraces(t1, t2);
 
 
 // Сортировка по возрастанию всех элементов строки
@@ -71,10 +71,12 @@ int main()
 	string av = makeVector(u, A.get());
 	string bv = makeVector(u, B.get());
 	string cv = makeVector(u, C.get());
+	string uv = arrayRBin(av, bv, cv);
 	print(av);
 	print(bv);
 	print(cv);
-	print(arrayRBin(av, bv, cv));
+	print(uv);
+	printBraces(u, uv);
 
 	return 0;
 }

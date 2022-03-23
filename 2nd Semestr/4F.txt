@@ -6,8 +6,10 @@ using std::cin;
 using std::endl;
 using std::vector;
 
-int max_elem_pos(vector<int> a);
-int min_elem_pos(vector<int> a);
+template <class t>
+t max_elem_pos(vector<t> a);
+template <class t>
+t min_elem_pos(vector<t> a);
 
 int main()
 {
@@ -25,9 +27,10 @@ int main()
 	return 0;
 }
 
-int max_elem_pos(vector<int> a)
+template <class t>
+t max_elem_pos(vector<t> a)
 {
-	int pos, max = -1;
+	int pos = 0, max = -1;
 	for (int i = 0; i < a.size(); ++i)
 	{
 		if (a[i] > max)
@@ -38,9 +41,10 @@ int max_elem_pos(vector<int> a)
 	}
 	return ++pos;
 }
-int min_elem_pos(vector<int> a)
+template <class t>
+t min_elem_pos(vector<t> a)
 {
-	int pos, min = 1000;
+	int pos = 0, min = 1000;
 	for (int i = 0; i < a.size(); ++i)
 	{
 		if (a[i] < min)

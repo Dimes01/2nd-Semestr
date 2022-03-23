@@ -5,11 +5,12 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-double getArea(int, int, int, int, int, int);
+template <class t>
+t getArea(t, t, t, t, t, t);
 
 int main()
 {
-	int ax, ay, bx, by, cx, cy, dx, dy, s1, s2, s3, s;
+	double ax, ay, bx, by, cx, cy, dx, dy, s1, s2, s3, s;
 	cin >> ax >> ay >> bx >> by >> cx >> cy >> dx >> dy;
 	s1 = getArea(ax, ay, bx, by, dx, dy);
 	s2 = getArea(ax, ay, dx, dy, cx, cy);
@@ -20,9 +21,10 @@ int main()
 	return 0;
 }
 
-double getArea(int ax, int ay, int bx, int by, int cx, int cy)
+template <class t>
+t getArea(t ax, t ay, t bx, t by, t cx, t cy)
 {
-	double res = ((bx - ax) * (ay + by) + (cx - bx) * (cy + by) + (ax - cx) * (ay + cy)) / 2;
+	t res = ((bx - ax) * (ay + by) + (cx - bx) * (cy + by) + (ax - cx) * (ay + cy)) / 2;
 	if (res < 0) res = -res;
 	return res;
 }

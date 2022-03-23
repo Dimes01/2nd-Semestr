@@ -5,12 +5,14 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-double getArea(double, double, double, double, double, double);
-double height(double, double, double, double, double);
+template <class t>
+t getArea(t, t, t, t, t, t);
+template <class t>
+t height(t, t, t, t, t);
 
 int main()
 {
-	float ax, ay, bx, by, cx, cy, dx, dy, h1, h2, h3, h = 10000000;
+	double ax, ay, bx, by, cx, cy, dx, dy, h1, h2, h3, h = 10000000;
 	cin >> ax >> ay >> bx >> by >> cx >> cy >> dx >> dy;
 	h1 = height(getArea(ax, ay, bx, by, dx, dy), ax, ay, bx, by);
 	h2 = height(getArea(ax, ay, dx, dy, cx, cy), ax, ay, cx, cy);
@@ -22,16 +24,18 @@ int main()
 	return 0;
 }
 
-double getArea(double ax, double ay, double bx, double by, double cx, double cy)
+template <class t>
+t getArea(t ax, t ay, t bx, t by, t cx, t cy)
 {
-	double res = ((bx - ax) * (ay + by) + (cx - bx) * (cy + by) + (ax - cx) * (ay + cy)) / 2;
+	t res = ((bx - ax) * (ay + by) + (cx - bx) * (cy + by) + (ax - cx) * (ay + cy)) / 2;
 	if (res < 0) res = -res;
 	return res;
 }
 
-double height(double s, double ax, double ay, double bx, double by)
+template <class t>
+t height(t s, t ax, t ay, t bx, t by)
 {
-	double len = powf(((ax - bx) * (ax - bx) + (ay - by) * (ay - by)), 0.5);
-	double h = 2 * s / len;
+	t len = powf(((ax - bx) * (ax - bx) + (ay - by) * (ay - by)), 0.5);
+	t h = 2 * s / len;
 	return h;
 }

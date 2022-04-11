@@ -34,6 +34,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Файлы ресурсов\Дискретная математика\Лабораторная 1">
+      <UniqueIdentifier>{028c0dfa-4160-46c1-adef-87be2ecb83ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -146,20 +149,20 @@
     <Text Include="4F.txt">
       <Filter>Файлы ресурсов\Программирование\Лабораторная 4</Filter>
     </Text>
-    <Text Include="Лабораторная 1.txt">
-      <Filter>Файлы ресурсов\Дискретная математика</Filter>
+    <Text Include="Задача 1.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 1</Filter>
     </Text>
-    <Text Include="Лабораторная 2.txt">
-      <Filter>Файлы ресурсов\Дискретная математика</Filter>
+    <Text Include="Задача 2.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 1</Filter>
     </Text>
-    <Text Include="Лабораторная 3.txt">
-      <Filter>Файлы ресурсов\Дискретная математика</Filter>
+    <Text Include="Задача 3.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 1</Filter>
     </Text>
-    <Text Include="Лабораторная 4_1.txt">
-      <Filter>Файлы ресурсов\Дискретная математика</Filter>
+    <Text Include="Задача 4%281%29.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 1</Filter>
     </Text>
-    <Text Include="Лабораторная 4_2.txt">
-      <Filter>Файлы ресурсов\Дискретная математика</Filter>
+    <Text Include="Задача 4%282%29.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 1</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>

@@ -1,11 +1,13 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <Windows.h>
 
 using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
+using std::vector;
 
 //////////////////////////////////////////////////////////////////////
 
@@ -25,15 +27,15 @@ string clean(string);
 
 // ¬ариант 17; Bin - дл€ работы с характеристическими векторами
 string arrayR(string, string, string);
-string arrayRBin(string, string, string);
+vector<bool> arrayRBin(vector<bool>, vector<bool>, vector<bool>);
 // A / B
 string razn(string, string);
-string raznBin(string, string);
+vector<bool> raznBin(vector<bool>, vector<bool>);
 // A или B
 string AorB(string, string);
-string AorBBin(string, string);
+vector<bool> AorBBin(vector<bool>, vector<bool>);
 // —оздание характеристического вектора
-string makeVector(string, string);
+vector<bool> makeVector(string, string);
 
 //////////////////////////////////////////////////////////////////////
 
@@ -64,10 +66,10 @@ int main()
 
 	string u = AorB(A.get(), B.get());
 	u = AorB(u, C.get());
-	string av = makeVector(u, A.get());
-	string bv = makeVector(u, B.get());
-	string cv = makeVector(u, C.get());
-	string rv = arrayRBin(av, bv, cv);
+	vector<bool> av = makeVector(u, A.get());
+	vector<bool> bv = makeVector(u, B.get());
+	vector<bool> cv = makeVector(u, C.get());
+	vector<bool> rv = arrayRBin(av, bv, cv);
 	print(u);
 	print(av);
 	print(bv);
@@ -161,33 +163,35 @@ string arrayR(string a, string b, string c)
 	return r;
 }
 
-string raznBin(string a, string b)
+vector<bool> raznBin(vector<bool> a, vector<bool> b)
 {
-	string r;
+	vector<bool> r;
+	r.resize(a.size());
 	int i = 0;
-	while (i < a.length())
+	while (i < a.size())
 	{
-		if (a[i] == b[i]) r.push_back('0');
-		else r.push_back(a[i]);
+		if (a[i] == b[i]) r[i] = false;
+		else r[i] = a[i];
 		++i;
 	}
 	return r;
 }
-string AorBBin(string a, string b)
+vector<bool> AorBBin(vector<bool> a, vector<bool> b)
 {
-	string r;
+	vector<bool> r;
+	r.resize(a.size());
 	int i = 0;
-	while (i < a.length())
+	while (i < a.size())
 	{
-		if (a[i] == '1' || b[i] == '1') r.push_back('1');
-		else r.push_back('0');
+		if (a[i] == true || b[i] == true) r[i] = true;
+		else r[i] = false;
 		++i;
 	}
 	return r;
 }
-string arrayRBin(string a, string b, string c)
+vector<bool> arrayRBin(vector<bool> a, vector<bool> b, vector<bool> c)
 {
-	string r;
+	vector<bool> r;
 	r = raznBin(c, b);
 	r = AorBBin(r, a);
 	return r;
@@ -223,28 +227,30 @@ string clean(string a)
 	clean_a.push_back(a[i]);
 	return clean_a;
 }
-string makeVector(string a1, string a2)
+vector<bool> makeVector(string a1, string a2)
 {
-	string v;
-	int i = 0, j = 0;
+	vector<bool> v;
+	v.resize(a1.size());
+	int i = 0, j = 0, count = 0;
 	while (i < a1.length())
 	{
 		if (j >= a2.length() || a1[i] < a2[j])
 		{
-			v.push_back('0');
+			v[count] = false;
 			++i;
 		}
 		else if (a1[i] == a2[j])
 		{
-			v.push_back('1');
+			v[count] = true;
 			++i;
 			++j;
 		}
 		else
 		{
-			v.push_back('0');
+			v[count] = false;
 			++j;
 		}
+		++count;
 	}
 	return v;
 }

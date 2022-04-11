@@ -17,6 +17,9 @@ void print(t);
 // Печать элементов строки в виде множества
 template <class t>
 void printBraces(t);
+// Перегрузка путём добавления параметра-маски для печати элементов
+template <class t1, class t2>
+void printBraces(t1, t2);
 
 
 // Сортировка по возрастанию всех элементов строки
@@ -70,11 +73,7 @@ int main()
 	vector<bool> bv = makeVector(u, B.get());
 	vector<bool> cv = makeVector(u, C.get());
 	vector<bool> rv = arrayRBin(av, bv, cv);
-	print(u);
-	print(av);
-	print(bv);
-	print(cv);
-	print(rv);
+	printBraces(u, rv);
 
 	system("pause");
 	return 0;
@@ -101,6 +100,25 @@ void printBraces(t str)
 		if (i < str.size() - 1) cout << str[i] << ", ";
 		else cout << str[i] << "}" << endl;
 	}
+}
+template <class t1, class t2>
+void printBraces(t1 str, t2 mask)
+{
+	int i = 0;
+	bool firstElement = true;
+	cout << '{';
+	for (i; i < str.size(); ++i)
+	{
+		if (mask[i] == '1' || mask[i] == 1 || mask[i] == true)
+		{
+			if (!firstElement) cout << ", ";
+			if (i < str.size() - 1) cout << str[i];
+			firstElement = false;
+		}
+	}
+	if (mask[i - 1] == '1' || mask[i - 1] == 1 || mask[i - 1] == true)
+		cout << str[i - 1] << '}' << endl;
+	else cout << '}' << endl;
 }
 
 string razn(string a, string b)

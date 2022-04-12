@@ -1,283 +1,119 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include <Windows.h>
 
 using std::cout;
 using std::cin;
-using std::endl;
-using std::string;
 using std::vector;
 
-//////////////////////////////////////////////////////////////////////
+void printBin(vector<int>);
+vector<int> makeR(vector<int>);
 
-// Печать элементов строки через пробел
-template <class t>
-void print(t);
-// Печать элементов строки в виде множества
-template <class t>
-void printBraces(t);
-// Перегрузка путём добавления параметра-маски для печати элементов
-template <class t1, class t2>
-void printBraces(t1, t2);
-
-
-// Сортировка по возрастанию всех элементов строки
-string sort(string);
-// Удаление повторяющихся элементов строки
-string clean(string);
-
-
-// Вариант 17; Bin - для работы с характеристическими векторами
-string arrayR(string, string, string);
-vector<bool> arrayRBin(vector<bool>, vector<bool>, vector<bool>);
-// A / B
-string razn(string, string);
-vector<bool> raznBin(vector<bool>, vector<bool>);
-// A или B
-string AorB(string, string);
-vector<bool> AorBBin(vector<bool>, vector<bool>);
-// Создание характеристического вектора
-vector<bool> makeVector(string, string);
-
-//////////////////////////////////////////////////////////////////////
-
-class Alphabet
+class Array
 {
 private:
-	string str;	// Изначальная строка
-	string a;	// Строка-алфавит
-public:
-	Alphabet();
+	vector<int> arr;
 
-	// Вводим строку
-	void set() { cin >> str; }
-	// Возвращаем строку-алфавит
-	string get() { return a; }
+public:
+	Array(int);
+	void set();
+	vector<int> get() { return arr; }
+	void sort();
+	void checkRepeat();
+	bool inArr(int, int);
 };
 
-//////////////////////////////////////////////////////////////////////
+
 
 int main()
 {
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	int N;
+	cin >> N;
+	Array A(N);
+	vector<int> R = makeR(A.get());
+	printBin(R);
 
-	Alphabet A;
-	Alphabet B;
-	Alphabet C;
-
-	string u = AorB(A.get(), B.get());
-	u = AorB(u, C.get());
-	vector<bool> av = makeVector(u, A.get());
-	vector<bool> bv = makeVector(u, B.get());
-	vector<bool> cv = makeVector(u, C.get());
-	vector<bool> rv = arrayRBin(av, bv, cv);
-	printBraces(u, rv);
-
-	system("pause");
 	return 0;
 }
 
-//////////////////////////////////////////////////////////////////////
 
-template <class t>
-void print(t str)
+
+Array::Array(int n)
 {
-	for (int i = 0; i < str.size(); ++i)
-	{
-		if (i < str.size() - 1) cout << str[i] << ' ';
-		else cout << str[i];
-	}
-	cout << endl;
-}
-template <class t>
-void printBraces(t str)
-{
-	cout << "{";
-	for (int i = 0; i < str.size(); ++i)
-	{
-		if (i < str.size() - 1) cout << str[i] << ", ";
-		else cout << str[i] << "}" << endl;
-	}
-}
-template <class t1, class t2>
-void printBraces(t1 str, t2 mask)
-{
-	int i = 0;
-	bool firstElement = true;
-	cout << '{';
-	for (i; i < str.size(); ++i)
-	{
-		if (mask[i] == '1' || mask[i] == 1 || mask[i] == true)
-		{
-			if (!firstElement) cout << ", ";
-			if (i < str.size() - 1) cout << str[i];
-			firstElement = false;
-		}
-	}
-	if (mask[i - 1] == '1' || mask[i - 1] == 1 || mask[i - 1] == true)
-		cout << str[i - 1] << '}' << endl;
-	else cout << '}' << endl;
+	arr.resize(n);
+	set();
+	checkRepeat();
+	sort();
 }
 
-string razn(string a, string b)
+void Array::set()
 {
-	string r;
-	int i = 0, j = 0;
-	while (j < b.length())
+	for (int i = 0; i < arr.size(); ++i)
 	{
-		if (a[i] == b[j])
-		{
-			++i;
-			++j;
-		}
-		else if (a[i] < b[j])
-		{
-			r.push_back(a[i]);
-			++i;
-		}
-		else if (a[i] > b[j])
-		{
-			++j;
-		}
+		cin >> arr[i];
 	}
-	return r;
 }
-string AorB(string a, string b)
+void Array::sort()
 {
-	string r;
-	int i = 0, j = 0;
-	while (i < a.length() && j < b.length())
-	{
-		if (a[i] < b[j])
-		{
-			r.push_back(a[i]);
-			++i;
-		}
-		else if (a[i] == b[j])
-		{
-			r.push_back(a[i]);
-			++i;
-			++j;
-		}
-		else if (a[i] > b[j])
-		{
-			r.push_back(b[j]);
-			++j;
-		}
-	}
-	if (i == a.length())
-		for (j; j < b.length(); ++j) r.push_back(b[j]);
-	else
-		for (i; i < a.length(); ++i) r.push_back(a[i]);
-	return r;
-}
-string arrayR(string a, string b, string c)
-{
-	string r;
-	r = razn(c, b);
-	r = AorB(r, a);
-	return r;
-}
-
-vector<bool> raznBin(vector<bool> a, vector<bool> b)
-{
-	vector<bool> r;
-	r.resize(a.size());
-	int i = 0;
-	while (i < a.size())
-	{
-		if (a[i] == b[i]) r[i] = false;
-		else r[i] = a[i];
-		++i;
-	}
-	return r;
-}
-vector<bool> AorBBin(vector<bool> a, vector<bool> b)
-{
-	vector<bool> r;
-	r.resize(a.size());
-	int i = 0;
-	while (i < a.size())
-	{
-		if (a[i] == true || b[i] == true) r[i] = true;
-		else r[i] = false;
-		++i;
-	}
-	return r;
-}
-vector<bool> arrayRBin(vector<bool> a, vector<bool> b, vector<bool> c)
-{
-	vector<bool> r;
-	r = raznBin(c, b);
-	r = AorBBin(r, a);
-	return r;
-}
-
-string sort(string a)
-{
-	for (int i = 0; i < a.length(); ++i)
+	for (int i = 0; i < arr.size(); ++i)
 	{
 		bool flag = false;
-		for (int j = 0; j < a.length() - 1; ++j)
+		for (int j = 0; j < arr.size() - 1; ++j)
 		{
-			if (a[j + 1] < a[j])
+			if (arr[j + 1] < arr[j])
 			{
-				a[j + 1] += a[j];
-				a[j] = a[j + 1] - a[j];
-				a[j + 1] -= a[j];
+				arr[j + 1] += arr[j];
+				arr[j] = arr[j + 1] - arr[j];
+				arr[j + 1] -= arr[j];
 				flag = true;
 			}
 		}
 		if (!flag) break;
 	}
-	return a;
 }
-string clean(string a)
+void Array::checkRepeat()
 {
-	string clean_a;
-	int i;
-	for (i = 0; i < a.length() - 1; ++i)
+	int a;
+	for (int i = 0; i < arr.size(); ++i)
 	{
-		if (a[i] != a[i + 1]) clean_a.push_back(a[i]);
+		while (inArr(arr[i], 2))
+		{
+			cout << "Был введен повторяющийся элемент.\nВведите еще число: ";
+			cin >> a;
+			if (!inArr(a, 1)) arr[i] = a;
+		}
 	}
-	clean_a.push_back(a[i]);
-	return clean_a;
 }
-vector<bool> makeVector(string a1, string a2)
+bool Array::inArr(int a, int count)
 {
-	vector<bool> v;
-	v.resize(a1.size());
-	int i = 0, j = 0, count = 0;
-	while (i < a1.length())
+	for (int i = 0; i < arr.size(); ++i)
 	{
-		if (j >= a2.length() || a1[i] < a2[j])
-		{
-			v[count] = false;
-			++i;
-		}
-		else if (a1[i] == a2[j])
-		{
-			v[count] = true;
-			++i;
-			++j;
-		}
-		else
-		{
-			v[count] = false;
-			++j;
-		}
-		++count;
+		if (a == arr[i]) --count;
+		if (count <= 0) return true;
 	}
-	return v;
+	return false;
 }
 
-//////////////////////////////////////////////////////////////////////
-
-Alphabet::Alphabet()
+vector<int> makeR(vector<int> arr)
 {
-	set();
-	a = sort(str);
-	a = clean(a);
+	vector<int> r;
+	for (int i = 0; i < arr.size(); ++i)
+	{
+		for (int j = 0; j < arr.size(); ++j)
+		{
+			if ((arr[i] - arr[j]) % 3 == 0 && arr[i] != arr[j])
+			{
+				r.push_back(arr[i]);
+				r.push_back(arr[j]);
+			}
+		}
+	}
+	return r;
+}
+void printBin(vector<int> a)
+{
+	for (int i = 0; i < a.size(); i += 2)
+	{
+		cout << '(' << a[i] << ", " << a[i + 1] << ')';
+	}
 }

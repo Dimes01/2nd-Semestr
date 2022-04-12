@@ -37,6 +37,9 @@
     <Filter Include="Файлы ресурсов\Дискретная математика\Лабораторная 1">
       <UniqueIdentifier>{028c0dfa-4160-46c1-adef-87be2ecb83ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы ресурсов\Дискретная математика\Лабораторная 2">
+      <UniqueIdentifier>{7c4b2cbb-68a8-4b3b-a5da-1713e5c4c05c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">

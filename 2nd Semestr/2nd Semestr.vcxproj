@@ -177,11 +177,11 @@
     <Text Include="4F.txt" />
     <Text Include="input.txt" />
     <Text Include="output.txt" />
-    <Text Include="Лабораторная 1.txt" />
-    <Text Include="Лабораторная 2.txt" />
-    <Text Include="Лабораторная 3.txt" />
-    <Text Include="Лабораторная 4_1.txt" />
-    <Text Include="Лабораторная 4_2.txt" />
+    <Text Include="Задача 1.txt" />
+    <Text Include="Задача 2.txt" />
+    <Text Include="Задача 3.txt" />
+    <Text Include="Задача 4%281%29.txt" />
+    <Text Include="Задача 4%282%29.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="2A_input.txt" />

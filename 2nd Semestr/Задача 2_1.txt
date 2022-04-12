@@ -8,6 +8,7 @@ using std::vector;
 
 void printBin(vector<int>);
 vector<int> makeR(vector<int>);
+void sort(vector<int>&);
 
 class Array
 {
@@ -17,33 +18,36 @@ private:
 public:
 	Array(int);
 	void set();
-	vector<int> get() { return arr; }
-	void sort();
 	void checkRepeat();
 	bool inArr(int, int);
+	vector<int> get() { return arr; }
 };
 
-
+//////////////////////////////////////////////////////////////////////
 
 int main()
 {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
 	int N;
 	cin >> N;
 	Array A(N);
+
 	vector<int> R = makeR(A.get());
 	printBin(R);
 
 	return 0;
 }
 
-
+//////////////////////////////////////////////////////////////////////
 
 Array::Array(int n)
 {
 	arr.resize(n);
 	set();
 	checkRepeat();
-	sort();
+	sort(arr);
 }
 
 void Array::set()
@@ -51,24 +55,6 @@ void Array::set()
 	for (int i = 0; i < arr.size(); ++i)
 	{
 		cin >> arr[i];
-	}
-}
-void Array::sort()
-{
-	for (int i = 0; i < arr.size(); ++i)
-	{
-		bool flag = false;
-		for (int j = 0; j < arr.size() - 1; ++j)
-		{
-			if (arr[j + 1] < arr[j])
-			{
-				arr[j + 1] += arr[j];
-				arr[j] = arr[j + 1] - arr[j];
-				arr[j + 1] -= arr[j];
-				flag = true;
-			}
-		}
-		if (!flag) break;
 	}
 }
 void Array::checkRepeat()
@@ -94,6 +80,24 @@ bool Array::inArr(int a, int count)
 	return false;
 }
 
+void sort(vector<int> &arr)
+{
+	for (int i = 0; i < arr.size(); ++i)
+	{
+		bool flag = false;
+		for (int j = 0; j < arr.size() - 1; ++j)
+		{
+			if (arr[j + 1] < arr[j])
+			{
+				arr[j + 1] += arr[j];
+				arr[j] = arr[j + 1] - arr[j];
+				arr[j + 1] -= arr[j];
+				flag = true;
+			}
+		}
+		if (!flag) break;
+	}
+}
 vector<int> makeR(vector<int> arr)
 {
 	vector<int> r;
@@ -114,6 +118,7 @@ void printBin(vector<int> a)
 {
 	for (int i = 0; i < a.size(); i += 2)
 	{
+		if (i > 0) cout << ' ';
 		cout << '(' << a[i] << ", " << a[i + 1] << ')';
 	}
 }

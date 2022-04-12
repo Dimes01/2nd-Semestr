@@ -8,6 +8,7 @@ using std::vector;
 
 void printBin(vector<int>);
 vector<int> makeR(vector<int>);
+vector<int> sort(vector<int>);
 
 class Array
 {
@@ -17,10 +18,9 @@ private:
 public:
 	Array(int);
 	void set();
-	vector<int> get() { return arr; }
-	void sort();
 	void checkRepeat();
 	bool inArr(int, int);
+	vector<int> get() { return arr; }
 };
 
 
@@ -43,7 +43,7 @@ Array::Array(int n)
 	arr.resize(n);
 	set();
 	checkRepeat();
-	sort();
+	arr = sort(arr);
 }
 
 void Array::set()
@@ -51,24 +51,6 @@ void Array::set()
 	for (int i = 0; i < arr.size(); ++i)
 	{
 		cin >> arr[i];
-	}
-}
-void Array::sort()
-{
-	for (int i = 0; i < arr.size(); ++i)
-	{
-		bool flag = false;
-		for (int j = 0; j < arr.size() - 1; ++j)
-		{
-			if (arr[j + 1] < arr[j])
-			{
-				arr[j + 1] += arr[j];
-				arr[j] = arr[j + 1] - arr[j];
-				arr[j + 1] -= arr[j];
-				flag = true;
-			}
-		}
-		if (!flag) break;
 	}
 }
 void Array::checkRepeat()
@@ -94,6 +76,25 @@ bool Array::inArr(int a, int count)
 	return false;
 }
 
+vector<int> sort(vector<int> arr)
+{
+	for (int i = 0; i < arr.size(); ++i)
+	{
+		bool flag = false;
+		for (int j = 0; j < arr.size() - 1; ++j)
+		{
+			if (arr[j + 1] < arr[j])
+			{
+				arr[j + 1] += arr[j];
+				arr[j] = arr[j + 1] - arr[j];
+				arr[j + 1] -= arr[j];
+				flag = true;
+			}
+		}
+		if (!flag) break;
+	}
+	return arr;
+}
 vector<int> makeR(vector<int> arr)
 {
 	vector<int> r;

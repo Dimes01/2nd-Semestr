@@ -177,14 +177,15 @@
     <Text Include="4F.txt" />
     <Text Include="input.txt" />
     <Text Include="output.txt" />
-    <Text Include="Задача 1.txt" />
-    <Text Include="Задача 2.txt" />
-    <Text Include="Задача 3.txt" />
-    <Text Include="Задача 4%281%29.txt" />
-    <Text Include="Задача 4%282%29.txt" />
+    <Text Include="Задача 1_1.txt" />
+    <Text Include="Задача 1_2.txt" />
+    <Text Include="Задача 1_3.txt" />
+    <Text Include="Задача 1_4%281%29.txt" />
+    <Text Include="Задача 1_4%282%29.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="2A_input.txt" />
+    <None Include="Задача 2_1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

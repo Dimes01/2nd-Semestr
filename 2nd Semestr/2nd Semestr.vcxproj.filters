@@ -152,25 +152,28 @@
     <Text Include="4F.txt">
       <Filter>Файлы ресурсов\Программирование\Лабораторная 4</Filter>
     </Text>
-    <Text Include="Задача 1.txt">
+    <Text Include="Задача 1_1.txt">
       <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 1</Filter>
     </Text>
-    <Text Include="Задача 2.txt">
+    <Text Include="Задача 1_2.txt">
       <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 1</Filter>
     </Text>
-    <Text Include="Задача 3.txt">
+    <Text Include="Задача 1_3.txt">
       <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 1</Filter>
     </Text>
-    <Text Include="Задача 4%281%29.txt">
+    <Text Include="Задача 1_4%281%29.txt">
       <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 1</Filter>
     </Text>
-    <Text Include="Задача 4%282%29.txt">
+    <Text Include="Задача 1_4%282%29.txt">
       <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 1</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="2A_input.txt">
       <Filter>Файлы ресурсов\Программирование\Лабораторная 2</Filter>
+    </None>
+    <None Include="Задача 2_1.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 2</Filter>
     </None>
   </ItemGroup>
 </Project>

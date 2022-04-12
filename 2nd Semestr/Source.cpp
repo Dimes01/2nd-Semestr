@@ -8,7 +8,7 @@ using std::vector;
 
 void printBin(vector<int>);
 vector<int> makeR(vector<int>);
-vector<int> sort(vector<int>);
+void sort(vector<int>&);
 
 class Array
 {
@@ -27,9 +27,13 @@ public:
 
 int main()
 {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
 	int N;
 	cin >> N;
 	Array A(N);
+
 	vector<int> R = makeR(A.get());
 	printBin(R);
 
@@ -43,7 +47,7 @@ Array::Array(int n)
 	arr.resize(n);
 	set();
 	checkRepeat();
-	arr = sort(arr);
+	sort(arr);
 }
 
 void Array::set()
@@ -76,7 +80,7 @@ bool Array::inArr(int a, int count)
 	return false;
 }
 
-vector<int> sort(vector<int> arr)
+void sort(vector<int> &arr)
 {
 	for (int i = 0; i < arr.size(); ++i)
 	{
@@ -93,7 +97,6 @@ vector<int> sort(vector<int> arr)
 		}
 		if (!flag) break;
 	}
-	return arr;
 }
 vector<int> makeR(vector<int> arr)
 {
@@ -115,6 +118,7 @@ void printBin(vector<int> a)
 {
 	for (int i = 0; i < a.size(); i += 2)
 	{
+		if (i > 0) cout << ' ';
 		cout << '(' << a[i] << ", " << a[i + 1] << ')';
 	}
 }

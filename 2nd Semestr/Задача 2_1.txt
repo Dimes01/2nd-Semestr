@@ -6,9 +6,11 @@ using std::cout;
 using std::cin;
 using std::vector;
 
+
 void printBin(vector<int>);
-vector<int> makeR(vector<int>);
 void sort(vector<int>&);
+vector<int> makeR(vector<int>);
+
 
 class Array
 {
@@ -49,7 +51,6 @@ Array::Array(int n)
 	checkRepeat();
 	sort(arr);
 }
-
 void Array::set()
 {
 	for (int i = 0; i < arr.size(); ++i)
@@ -80,7 +81,8 @@ bool Array::inArr(int a, int count)
 	return false;
 }
 
-void sort(vector<int> &arr)
+
+void sort(vector<int>& arr)
 {
 	for (int i = 0; i < arr.size(); ++i)
 	{
@@ -98,6 +100,14 @@ void sort(vector<int> &arr)
 		if (!flag) break;
 	}
 }
+void printBin(vector<int> a)
+{
+	for (int i = 0; i < a.size(); i += 2)
+	{
+		if (i > 0) cout << ' ';
+		cout << '(' << a[i] << ", " << a[i + 1] << ')';
+	}
+}
 vector<int> makeR(vector<int> arr)
 {
 	vector<int> r;
@@ -113,12 +123,4 @@ vector<int> makeR(vector<int> arr)
 		}
 	}
 	return r;
-}
-void printBin(vector<int> a)
-{
-	for (int i = 0; i < a.size(); i += 2)
-	{
-		if (i > 0) cout << ' ';
-		cout << '(' << a[i] << ", " << a[i + 1] << ')';
-	}
 }

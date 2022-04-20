@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <typeinfo>
 #include <Windows.h>
 
 using std::cout;
@@ -15,31 +14,44 @@ template<class t>
 void printSpaces(t, int);
 void printSpaces(int);
 void sort(vector<int>&);
-void multiMatrix(vector<vector<bool>>, vector<vector<bool>>);
 
 
 class Array
 {
-private:
+protected:
 	vector<int> arr;
 	vector<int> R;
-	vector<vector<bool>> matrixR;
+	int Size;
+
+public:
+	Array();
+	void set(int);
+	void checkRepeat();
+	void makeR();
+	bool inArr(int, int, int);
+	vector<int> getArr() { return arr; }
+	vector<int> getR() { return R; }
+	int getSize() { return Size; }
+};
+
+
+class Matrix : public Array
+{
+private:
+	vector<vector<bool>> mtrx;
 	string Reflexivity;
 	string Symmetry;
 	string Transitivity;
 
+
 public:
-	Array(int);
-	void set();
-	void checkRepeat();
-	void makeR();
-	void makeMatrixR();
-	void printMatrix();
+	Matrix() {}
+	Matrix(const Array&);
 	void properties();
-	bool inArr(int, int, int);
-	vector<int> getArr() { return arr; }
-	vector<int> getR() { return R; }
-	vector<vector<bool>> getMatrixR() { return matrixR; }
+	void printMatrix();
+	Matrix operator * (const Matrix&);
+	Matrix & operator = (const Matrix&);
+
 };
 
 //////////////////////////////////////////////////////////////////////
@@ -49,33 +61,34 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
+	Array A;
 	int N;
-	cin >> N;
-	Array A(N);
 
-	cout << '\n';
-	A.printMatrix();
+	cin >> N;
+	A.set(N);
+	A.makeR();
+
+	Matrix M(A);
+	M.printMatrix();
 
 	return 0;
 }
 
 //////////////////////////////////////////////////////////////////////
 
-Array::Array(int n)
+Array::Array()
 {
-	arr.resize(n);
-	set();
-	checkRepeat();
-	sort(arr);
-	makeR();
-	makeMatrixR();
+	Size = 0;
 }
-void Array::set()
+void Array::set(int N)
 {
+	Size = N;
+	arr.resize(Size);
 	for (int i = 0; i < arr.size(); ++i)
 	{
 		cin >> arr[i];
 	}
+	checkRepeat();
 }
 void Array::checkRepeat()
 {
@@ -104,34 +117,60 @@ void Array::makeR()
 		}
 	}
 }
-void Array::makeMatrixR()
+bool Array::inArr(int a, int count, int beg)
 {
-	for (int i = 0, k = 0; i < arr.size(); ++i)
+	for (int i = beg; i < arr.size(); ++i)
 	{
-		vector<bool> matrixRi;
-		for (int j = 0; j < arr.size(); ++j)
+		if (a == arr[i]) --count;
+		if (count <= 0) return true;
+	}
+	return false;
+}
+
+
+Matrix::Matrix(const Array & A)
+{
+	for (int i = 0; i < Size; ++i)
+	{
+		vector<bool> a;
+		a.resize(Size);
+		for (int j = 0, k = 0; i < Size; ++j)
 		{
-			if (k != R.size())
-			{
-				if (arr[i] == R[k] && arr[j] == R[k + 1])
-				{
-					matrixRi.push_back(true);
-					k += 2;
-				}
-				else
-				{
-					matrixRi.push_back(false);
-				}
-			}
-			else
-			{
-				matrixRi.push_back(false);
-			}
+			if (k < R.size()) a[j] = (i == R[k] && j == R[k + 1]);
+			else a[j] = false;
+			if (a[j] == true) k += 2;
 		}
-		matrixR.push_back(matrixRi);
+		mtrx[i] = a;
 	}
 }
-void Array::printMatrix()
+void Matrix::properties()
+{
+	bool ref = true, sym = true;
+	int countref = 0, countsym = 0;
+
+	for (int i = 0; i < Size; ++i)
+	{
+		// Проверка на рефлексивность
+		if (!mtrx[i][i]) ref = false;
+		else ++countref;
+
+		// Проверка на симметричность
+		for (int j = 0; j < Size; ++j)
+		{
+			if (mtrx[i][j] != mtrx[j][i]) sym = false;
+			else ++countsym;
+		}
+	}
+
+	if (ref) Reflexivity = "Рефлексивно";
+	else if (!countref) Reflexivity = "Антирефлексивно";
+	else Reflexivity = "Нерефлексивно";
+
+	if (sym) Symmetry = "Симметрично";
+	else if (!countsym) Symmetry = "Антисимметрично";
+	else Symmetry = "Несимметрично";
+}
+void Matrix::printMatrix()
 {
 	// maxLenCount хранит длину для печати элемента матрицы (максимальное кол-во цифр в числе + 1 для пробела)
 	int maxLenCount = 1;
@@ -157,55 +196,46 @@ void Array::printMatrix()
 		cout << '|';
 		for (int j = 0; j < arr.size(); ++j)
 		{
-			printSpaces(matrixR[i][j], maxLenCount);
+			printSpaces(mtrx[i][j], maxLenCount);
 			if (j < arr.size() - 1) cout << ' ';
 		}
 		cout << '\n';
 	}
 }
-void Array::properties()
+Matrix Matrix::operator* (const Matrix& other)
 {
-	int countRef = 0, countSym = 0, countTran = 0;
-	bool ref = true, sym = true, tran = true, flag = true;
-	for (int i = 0; i < arr.size(); ++i)
+	Matrix temp;
+	this->Size = other.Size;
+	this->Reflexivity = other.Reflexivity;
+	arr.resize(this->Size);
+	for (int i = 0; i < this->Size; ++i)
 	{
-		for (int j = 0; j < arr.size(); ++j)
+		vector<bool> m;
+		m.resize(this->Size);
+		for (int j = 0; j < this->Size; ++j)
 		{
-			// Проверка на рефлексивность
-			if (!matrixR[i][i]) ref = false;
-			else ++countRef;
-
-			// Проверка на симметричность
-			if (matrixR[i][j] != matrixR[j][i]) sym = false;
-			else ++countSym;
-
-			if (countRef > 0 && countSym > 0 && !ref && !sym)
+			for (int k = 0; k < this->Size; ++k)
 			{
-				flag = false;
-				break;
+				m[j] = mtrx[j][k] && mtrx[k][j];
+				if (m[j]) break;
 			}
 		}
-		if (!flag) break;
+		mtrx[i] = m;
 	}
-
-	if (ref) Reflexivity = "Рефлексивно";
-	else if (ref == false && countRef > 0) Reflexivity = "Нерефлексивно";
-	else Reflexivity = "Антирефлексивно";
-
-	if (sym) Symmetry = "Симметрично";
-	else if (sym == false && countSym > 0) Symmetry = "Несимметрично";
-	else Symmetry = "Антисимметрично";
-
-	// Проверка на транзитивность
+	return temp;
 }
-bool Array::inArr(int a, int count, int beg)
+Matrix & Matrix::operator= (const Matrix& other)
 {
-	for (int i = beg; i < arr.size(); ++i)
+	this->Size = other.Size;
+	for (int i = 0; i < this->Size; ++i)
 	{
-		if (a == arr[i]) --count;
-		if (count <= 0) return true;
+		for (int j = 0; i < this->Size; ++j)
+		{
+			this->mtrx[i][j] = other.mtrx[i][j];
+		}
 	}
-	return false;
+
+	return *this;
 }
 
 

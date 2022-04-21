@@ -34,7 +34,6 @@ private:
 	int Size;
 
 public:
-
 	Relation() { Size = 0; };
 	void set(int);
 	void checkRepeat();
@@ -47,8 +46,6 @@ public:
 	vector<int> getArr() { return arr; }
 	vector<int> getR() { return R; }
 
-	Relation& operator= (const Relation&);
-	//Relation operator* (const Relation&);
 };
 
 //////////////////////////////////////////////////////////////////////
@@ -64,6 +61,9 @@ int main()
 	cin >> N;
 	A.set(N);
 	printBraces(A.getR());
+	cout << endl;
+	A.printMatrix();
+	cout << endl;
 	A.printProperties();
 
 	return 0;
@@ -81,6 +81,7 @@ void Relation::set(int N)
 		cin >> arr[i];
 	}
 	checkRepeat();
+	sort(arr);
 	makeR();
 	makeMatrix();
 	properties();
@@ -88,14 +89,13 @@ void Relation::set(int N)
 void Relation::checkRepeat()
 {
 	int a, i = 0;
-	while (inArr(arr[i], 2, i))
+	for (int i = 0; i < Size; ++i)
 	{
-		cout << "Был введен повторяющийся элемент.\nВведите еще число: ";
-		cin >> a;
-		if (!inArr(a, 1, 0))
+		while (inArr(arr[i], 2, i))
 		{
-			arr[i] = a;
-			++i;
+			cout << "Был введен повторяющийся элемент.\nВведите еще число: ";
+			cin >> a;
+			if (!inArr(a, 1, 0)) arr[i] = a;
 		}
 	}
 }
@@ -175,6 +175,38 @@ void Relation::properties()
 	if (c <= matrixBin) Transitivity = "Транзитивно";
 	else Transitivity = "Нетранзитивно";
 }
+void Relation::printMatrix()
+{
+	// maxLenCount хранит длину для печати элемента матрицы (максимальное кол-во цифр в числе + 1 для пробела)
+	int maxLenCount = 1;
+	for (int i = arr[arr.size() - 1]; i > 0; i /= 10) ++maxLenCount;
+
+	// Печатаем первую строку с перечислением всех элементов
+	for (int i = 0; i < maxLenCount; ++i) cout << ' ';
+	for (int i = 0; i < arr.size(); ++i)
+	{
+		cout << '|';
+		printSpaces(arr[i], maxLenCount);
+	}
+	cout << '\n';
+
+	// Печатаем строку из дефисов
+	for (int i = 0; i < (maxLenCount + 1) * arr.size() + maxLenCount; ++i) cout << '-';
+	cout << '\n';
+
+	// Печатаем саму матрицу с перечислением всех элементов
+	for (int i = 0; i < arr.size(); ++i)
+	{
+		printSpaces(arr[i], maxLenCount);
+		cout << '|';
+		for (int j = 0; j < arr.size(); ++j)
+		{
+			printSpaces(matrixBin[i][j], maxLenCount);
+			if (j < arr.size() - 1) cout << ' ';
+		}
+		cout << '\n';
+	}
+}
 
 
 void printBraces(const vector<int> &a)
@@ -184,6 +216,7 @@ void printBraces(const vector<int> &a)
 		if (i > 0) cout << ' ';
 		cout << '(' << a[i] << ", " << a[i + 1] << ')';
 	}
+	cout << endl;
 }
 void sort(vector<int>& arr)
 {

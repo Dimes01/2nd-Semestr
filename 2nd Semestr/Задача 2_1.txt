@@ -1,28 +1,51 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include <Windows.h>
 
 using std::cout;
 using std::cin;
+using std::endl;
 using std::vector;
+using std::string;
 
 
-void printBin(vector<int>);
+void printBraces(const vector<int>&);
+template<class t>
+void printSpaces(t, int);
 void sort(vector<int>&);
-vector<int> makeR(vector<int>);
+
+// Оператор * перемножает матрицы
+vector<vector<bool>> operator*(const vector<vector<bool>>&, const vector<vector<bool>>&);
+// Оператор <= эквивалентен "содержится в ..."
+bool operator<=(const vector<vector<bool>>&, const vector<vector<bool>>&);
 
 
-class Array
+class Relation
 {
 private:
-	vector<int> arr;
+
+	vector<int> arr;					// множество, на котором определено отношение
+	vector<int> R;						// отношение
+	vector<vector<bool>> matrixBin;		// матрица отношения
+	string Reflexivity;
+	string Symmetry;
+	string Transitivity;
+	int Size;
 
 public:
-	Array(int);
-	void set();
+	Relation() { Size = 0; };
+	void set(int);
 	void checkRepeat();
-	bool inArr(int, int);
-	vector<int> get() { return arr; }
+	void makeR();
+	void makeMatrix();
+	void properties();
+	void printMatrix();
+	bool inArr(int, int, int);
+	void printProperties();
+	vector<int> getArr() { return arr; }
+	vector<int> getR() { return R; }
+
 };
 
 //////////////////////////////////////////////////////////////////////
@@ -32,56 +55,165 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
+	Relation A;
 	int N;
-	cin >> N;
-	Array A(N);
 
-	vector<int> R = makeR(A.get());
-	printBin(R);
+	cin >> N;
+	A.set(N);
+	printBraces(A.getR());
 
 	return 0;
 }
 
 //////////////////////////////////////////////////////////////////////
 
-Array::Array(int n)
+void Relation::set(int N)
 {
-	arr.resize(n);
-	set();
-	checkRepeat();
-	sort(arr);
-}
-void Array::set()
-{
+	Size = N;
+	arr.resize(Size);
+	matrixBin.resize(Size);
 	for (int i = 0; i < arr.size(); ++i)
 	{
 		cin >> arr[i];
 	}
+	checkRepeat();
+	makeR();
+	makeMatrix();
+	properties();
 }
-void Array::checkRepeat()
+void Relation::checkRepeat()
 {
-	int a;
-	for (int i = 0; i < arr.size(); ++i)
+	int a, i = 0;
+	while (inArr(arr[i], 2, i))
 	{
-		while (inArr(arr[i], 2))
+		cout << "Был введен повторяющийся элемент.\nВведите еще число: ";
+		cin >> a;
+		if (!inArr(a, 1, 0))
 		{
-			cout << "Был введен повторяющийся элемент.\nВведите еще число: ";
-			cin >> a;
-			if (!inArr(a, 1)) arr[i] = a;
+			arr[i] = a;
+			++i;
 		}
 	}
 }
-bool Array::inArr(int a, int count)
+void Relation::makeR()
 {
 	for (int i = 0; i < arr.size(); ++i)
+	{
+		for (int j = 0; j < arr.size(); ++j)
+		{
+			if ((arr[i] - arr[j]) % 3 == 0 && arr[i] != arr[j])
+			{
+				R.push_back(arr[i]);
+				R.push_back(arr[j]);
+			}
+		}
+	}
+}
+void Relation::makeMatrix()
+{
+	int k = 0;
+	for (int i = 0; i < Size; ++i)
+	{
+		vector<bool> a;
+		a.resize(Size);
+		for (int j = 0; j < Size; ++j)
+		{
+			if (k < R.size()) a[j] = (arr[i] == R[k]) && (arr[j] == R[k + 1]);
+			else a[j] = false;
+			if (a[j] == true) k += 2;
+		}
+		matrixBin[i] = a;
+	}
+}
+bool Relation::inArr(int a, int count, int beg)
+{
+	for (int i = beg; i < arr.size(); ++i)
 	{
 		if (a == arr[i]) --count;
 		if (count <= 0) return true;
 	}
 	return false;
 }
+void Relation::printProperties()
+{
+	cout << Reflexivity << endl;
+	cout << Symmetry << endl;
+	cout << Transitivity << endl;
+}
+void Relation::properties()
+{
+	bool ref = true, sym = true;
+	int countref = 0, countsym = 0;
+	vector<vector<bool>> c = matrixBin * matrixBin;
+
+	for (int i = 0; i < Size; ++i)
+	{
+		// Проверка на рефлексивность
+		if (!matrixBin[i][i]) ref = false;
+		else ++countref;
+
+		// Проверка на симметричность
+		for (int j = 0; j < Size; ++j)
+		{
+			if (matrixBin[i][j] != matrixBin[j][i]) sym = false;
+			else ++countsym;
+		}
+	}
+
+	if (ref) Reflexivity = "Рефлексивно";
+	else if (!countref) Reflexivity = "Антирефлексивно";
+	else Reflexivity = "Нерефлексивно";
+
+	if (sym) Symmetry = "Симметрично";
+	else if (!countsym) Symmetry = "Антисимметрично";
+	else Symmetry = "Несимметрично";
+
+	if (c <= matrixBin) Transitivity = "Транзитивно";
+	else Transitivity = "Нетранзитивно";
+}
+void Relation::printMatrix()
+{
+	// maxLenCount хранит длину для печати элемента матрицы (максимальное кол-во цифр в числе + 1 для пробела)
+	int maxLenCount = 1;
+	for (int i = arr[arr.size() - 1]; i > 0; i /= 10) ++maxLenCount;
+
+	// Печатаем первую строку с перечислением всех элементов
+	for (int i = 0; i < maxLenCount; ++i) cout << ' ';
+	for (int i = 0; i < arr.size(); ++i)
+	{
+		cout << '|';
+		printSpaces(arr[i], maxLenCount);
+	}
+	cout << '\n';
+
+	// Печатаем строку из дефисов
+	for (int i = 0; i < (maxLenCount + 1) * arr.size() + maxLenCount; ++i) cout << '-';
+	cout << '\n';
+
+	// Печатаем саму матрицу с перечислением всех элементов
+	for (int i = 0; i < arr.size(); ++i)
+	{
+		printSpaces(arr[i], maxLenCount);
+		cout << '|';
+		for (int j = 0; j < arr.size(); ++j)
+		{
+			printSpaces(matrixBin[i][j], maxLenCount);
+			if (j < arr.size() - 1) cout << ' ';
+		}
+		cout << '\n';
+	}
+}
 
 
+void printBraces(const vector<int> &a)
+{
+	for (int i = 0; i < a.size(); i += 2)
+	{
+		if (i > 0) cout << ' ';
+		cout << '(' << a[i] << ", " << a[i + 1] << ')';
+	}
+	cout << endl;
+}
 void sort(vector<int>& arr)
 {
 	for (int i = 0; i < arr.size(); ++i)
@@ -100,27 +232,48 @@ void sort(vector<int>& arr)
 		if (!flag) break;
 	}
 }
-void printBin(vector<int> a)
+vector<vector<bool>> operator*(const vector<vector<bool>>& a, const vector<vector<bool>>& b)
 {
-	for (int i = 0; i < a.size(); i += 2)
+	vector<vector<bool>> c;
+	c.resize(a.size());
+	for (int i = 0; i < a.size(); ++i)
 	{
-		if (i > 0) cout << ' ';
-		cout << '(' << a[i] << ", " << a[i + 1] << ')';
-	}
-}
-vector<int> makeR(vector<int> arr)
-{
-	vector<int> r;
-	for (int i = 0; i < arr.size(); ++i)
-	{
-		for (int j = 0; j < arr.size(); ++j)
+		vector<bool> ci;
+		ci.resize(a.size());
+		for (int j = 0; j < ci.size(); ++j)
 		{
-			if ((arr[i] - arr[j]) % 3 == 0 && arr[i] != arr[j])
+			for (int k = 0; k < ci.size(); ++k)
 			{
-				r.push_back(arr[i]);
-				r.push_back(arr[j]);
+				ci[j] = a[i][k] && b[k][j];
+				if (ci[j]) break;
 			}
 		}
+		c[i] = ci;
 	}
-	return r;
+	return c;
+}
+bool operator<=(const vector<vector<bool>>& a, const vector<vector<bool>>& b)
+{
+	for (int i = 0; i < a.size(); ++i)
+	{
+		for (int j = 0; j < a.size(); ++j)
+		{
+			if (!a[i][j] && b[i][j]) return false;
+		}
+	}
+	return true;
+}
+
+
+template<class t>
+void printSpaces(t a, int len)
+{
+	int lenA = 0;
+	if (a || !a) lenA = 1;
+	else
+	{
+		for (int i = a; i > 0; i /= 10) ++lenA;
+	}
+	for (int i = 0; i < len - lenA; ++i) cout << ' ';
+	cout << a;
 }

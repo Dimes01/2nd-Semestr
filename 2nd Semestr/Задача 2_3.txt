@@ -34,7 +34,6 @@ private:
 	int Size;
 
 public:
-
 	Relation() { Size = 0; };
 	void set(int);
 	void checkRepeat();
@@ -61,7 +60,7 @@ int main()
 
 	cin >> N;
 	A.set(N);
-	A.printMatrix();
+	A.printProperties();
 
 	return 0;
 }

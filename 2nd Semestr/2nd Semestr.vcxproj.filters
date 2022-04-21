@@ -170,6 +170,9 @@
     <Text Include="Задача 2_2.txt">
       <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 2</Filter>
     </Text>
+    <Text Include="Задача 2_3.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 2</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="2A_input.txt">

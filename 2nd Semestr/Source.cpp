@@ -12,7 +12,7 @@ using std::string;
 
 void printBraces(const vector<int>&);
 template<class t>
-void printSpaces(t, int);
+void printSpaces(t, int, bool);
 void sort(vector<int>&);
 
 // Оператор * перемножает матрицы
@@ -186,7 +186,7 @@ void Relation::printMatrix()
 	for (int i = 0; i < arr.size(); ++i)
 	{
 		cout << '|';
-		printSpaces(arr[i], maxLenCount);
+		printSpaces(arr[i], maxLenCount, false);
 	}
 	cout << '\n';
 
@@ -197,11 +197,11 @@ void Relation::printMatrix()
 	// Печатаем саму матрицу с перечислением всех элементов
 	for (int i = 0; i < arr.size(); ++i)
 	{
-		printSpaces(arr[i], maxLenCount);
+		printSpaces(arr[i], maxLenCount, false);
 		cout << '|';
 		for (int j = 0; j < arr.size(); ++j)
 		{
-			printSpaces(matrixBin[i][j], maxLenCount);
+			printSpaces(matrixBin[i][j], maxLenCount, true);
 			if (j < arr.size() - 1) cout << ' ';
 		}
 		cout << '\n';
@@ -270,12 +270,13 @@ bool operator<=(const vector<vector<bool>>& a, const vector<vector<bool>>& b)
 
 
 template<class t>
-void printSpaces(t a, int len)
+void printSpaces(t a, int len, bool flag = false)
 {
-	int lenA = 0;
-	if (a || !a) lenA = 1;
+	int lenA;
+	if (flag) lenA = 1;
 	else
 	{
+		lenA = 0;
 		for (int i = a; i > 0; i /= 10) ++lenA;
 	}
 	for (int i = 0; i < len - lenA; ++i) cout << ' ';

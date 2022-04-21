@@ -76,10 +76,7 @@ void Relation::set(int N)
 	Size = N;
 	arr.resize(Size);
 	matrixBin.resize(Size);
-	for (int i = 0; i < arr.size(); ++i)
-	{
-		cin >> arr[i];
-	}
+	for (int i = 0; i < arr.size(); ++i) cin >> arr[i];
 	checkRepeat();
 	sort(arr);
 	makeR();
@@ -270,7 +267,7 @@ bool operator<=(const vector<vector<bool>>& a, const vector<vector<bool>>& b)
 
 
 template<class t>
-void printSpaces(t a, int len, bool flag = false)
+void printSpaces(t a, int len, bool flag)
 {
 	int lenA;
 	if (flag) lenA = 1;

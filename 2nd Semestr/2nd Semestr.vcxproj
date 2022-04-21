@@ -182,6 +182,7 @@
     <Text Include="Задача 1_3.txt" />
     <Text Include="Задача 1_4%281%29.txt" />
     <Text Include="Задача 1_4%282%29.txt" />
+    <Text Include="Задача 2_2.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="2A_input.txt" />

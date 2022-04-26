@@ -1,0 +1,110 @@
+#include <iostream>
+#include <vector>
+#include <ctime>
+
+using namespace std;
+
+vector<int> shuffle(int, int);
+vector<int> nextShuffle(vector<int>);
+
+template <class t>
+ostream& operator<< (ostream& os, const vector<t>& a);
+template <class t>
+istream& operator>> (istream& os, vector<t>& a);
+
+
+
+int main()
+{
+	int n;
+	cin >> n;
+	vector<int> a;
+	a.resize(n);
+	cin >> a;
+	vector<int> b = nextShuffle(a);
+	cout << b;
+}
+
+
+
+vector<int> shuffle(int k, int n)
+{
+	srand(time(0));
+	vector<int> arr;
+	arr.resize(n);
+	for (int i = 0; i < n; ++i)	arr[i] = i + 1;
+	for (int i = n - 1; i >= 1; --i)
+	{
+		int j = rand() % (i + 1);
+
+		int tmp = arr[j];
+		arr[j] = arr[i];
+		arr[i] = tmp;
+	}
+	for (int i = n - 1; i > n - k; --i)
+	{
+		int j = rand() % (i + 1);
+		arr.erase(arr.begin() + j);
+	}
+	return arr;
+}
+vector<int> nextShuffle(vector<int> a)
+{
+	int i = a.size() - 1;
+	// first - индекс одного из элементов, которые будем менять местами
+	int first;
+
+	// Находим наибольшую неувеличивающуюся последовательность с конца
+	for (i; i > 0; --i)
+	{
+		if (a[i] > a[i - 1])
+		{
+			first = i - 1;
+			break;
+		}
+	}
+
+	// Находим наименьший по возрастанию элемент (second) относительно first
+	for (i = a.size() - 1; a[i] < a[first]; --i);
+	int second = i;
+
+	// Меняем два найденных элемента
+	a[first] += a[second];
+	a[second] = a[first] - a[second];
+	a[first] -= a[second];
+
+	// Сортируем участок, где была последовательность, по возрастанию
+	for (i = first + 1; i < a.size() - 1; ++i)
+	{
+		for (int j = first + 1; j < a.size() - 1; ++j)
+		{
+			if (a[j] > a[j + 1])
+			{
+				a[j] += a[j + 1];
+				a[j + 1] = a[j] - a[j + 1];
+				a[j] -= a[j + 1];
+			}
+		}
+	}
+	return a;
+}
+
+template <class t>
+ostream& operator<< (ostream& os, const vector<t>& a)
+{
+	for (int i = 0; i < a.size(); ++i)
+	{
+		if (i) os << ' ';
+		os << a[i];
+	}
+	return os;
+}
+template <class t>
+istream& operator>> (istream& is, vector<t>& a)
+{
+	for (int i = 0; i < a.size(); ++i)
+	{
+		is >> a[i];
+	}
+	return is;
+}

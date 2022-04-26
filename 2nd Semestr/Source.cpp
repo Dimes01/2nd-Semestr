@@ -7,8 +7,8 @@ using std::cin;
 using std::vector;
 
 void printBin(vector<int>);
-vector<int> makeR(vector<int>);
 void sort(vector<int>&);
+vector<int> makeR(vector<int>);
 
 class Array
 {

@@ -58,7 +58,7 @@ int main()
 
 	cin >> N;
 	A.set(N);
-	printBraces(A.getR());
+	A.printProperties();
 
 	return 0;
 }

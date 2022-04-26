@@ -1,0 +1,66 @@
+#include <iostream>
+#include <vector>
+#include <ctime>
+
+using namespace std;
+
+vector<int> shuffle(int, int);
+
+template <class t>
+ostream& operator<< (ostream& os, const vector<t>& a);
+template <class t>
+istream& operator>> (istream& os, vector<t>& a);
+
+
+
+int main()
+{
+	int n, k;
+	cin >> k >> n;
+	vector<int> a = shuffle(k,n);
+	cout << a;
+}
+
+
+
+vector<int> shuffle(int k, int n)
+{
+	srand(time(0));
+	vector<int> arr;
+	arr.resize(n);
+	for (int i = 0; i < n; ++i)	arr[i] = i + 1;
+	for (int i = n - 1; i >= 1; --i)
+	{
+		int j = rand() % (i + 1);
+
+		int tmp = arr[j];
+		arr[j] = arr[i];
+		arr[i] = tmp;
+	}
+	for (int i = n - 1; i > n - k; --i)
+	{
+		int j = rand() % (i + 1);
+		arr.erase(arr.begin() + j);
+	}
+	return arr;
+}
+
+template <class t>
+ostream& operator<< (ostream& os, const vector<t>& a)
+{
+	for (int i = 0; i < a.size(); ++i)
+	{
+		if (i) os << ' ';
+		os << a[i];
+	}
+	return os;
+}
+template <class t>
+istream& operator>> (istream& is, vector<t>& a)
+{
+	for (int i = 0; i < a.size(); ++i)
+	{
+		is >> a[i];
+	}
+	return is;
+}

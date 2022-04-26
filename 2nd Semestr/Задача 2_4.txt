@@ -58,7 +58,7 @@ int main()
 
 	cin >> N;
 	A.set(N);
-	printBraces(A.getR());
+	A.printMatrix(A.getComposition(), true);
 
 	return 0;
 }
@@ -188,7 +188,7 @@ void Relation::makeComposition()
 		for (int j = 0; j < Size; ++j) composition[i][j] = false;
 	}
 
-	//Так как отношение симметрично, то R = R^(-1)
+	// Так как отношение симметрично, то R = R^(-1)
 	for (int i = 0; i < Size; ++i)
 	{
 		for (int j = 0; j < Size; ++j)

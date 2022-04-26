@@ -40,6 +40,18 @@
     <Filter Include="Файлы ресурсов\Дискретная математика\Лабораторная 2">
       <UniqueIdentifier>{7c4b2cbb-68a8-4b3b-a5da-1713e5c4c05c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы ресурсов\Дискретная математика\Лабораторная 3">
+      <UniqueIdentifier>{7de4b636-341f-48e1-9998-2606619d1ffc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Дискретная математика\BACS">
+      <UniqueIdentifier>{1552a18c-b417-40ad-ad9c-6d00f6366515}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Дискретная математика\BACS\Комбинаторика">
+      <UniqueIdentifier>{6a0aaf89-93fc-4d92-bb1c-e44429bcc9e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Дискретная математика\BACS\Графы">
+      <UniqueIdentifier>{bed28412-47d8-4353-b3bc-6c9d2c5c0ecf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -161,11 +173,35 @@
     <Text Include="Задача 1_3.txt">
       <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 1</Filter>
     </Text>
-    <Text Include="Задача 1_4%281%29.txt">
+    <Text Include="Задача 1_4.txt">
       <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 1</Filter>
     </Text>
-    <Text Include="Задача 1_4%282%29.txt">
-      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 1</Filter>
+    <Text Include="Задача 2_2.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="Задача 2_3.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="Задача 2_4.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 2</Filter>
+    </Text>
+    <Text Include="Задача 3_1.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 3</Filter>
+    </Text>
+    <Text Include="Задача 3_2.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 3</Filter>
+    </Text>
+    <Text Include="Задача 3_3.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 3</Filter>
+    </Text>
+    <Text Include="Задача 3_4.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\Лабораторная 3</Filter>
+    </Text>
+    <Text Include="Задача 1.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\BACS\Комбинаторика</Filter>
+    </Text>
+    <Text Include="Задача 2.txt">
+      <Filter>Файлы ресурсов\Дискретная математика\BACS\Комбинаторика</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
